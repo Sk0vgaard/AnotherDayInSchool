@@ -21,7 +21,7 @@ public class Pistol : Weapon {
         muzzleFlare = Resources.Load("MuzzleFlare") as GameObject;
 
         spawnPoint = transform.Find("ProjectileSpawnPoint");
-        muzzleFlareSpawnPoint = transform.Find("Sprite").Find("MuzzleFlareSpawnPoint");
+        muzzleFlareSpawnPoint = transform.Find("MuzzleFlareSpawnPoint");
 
 
     }
