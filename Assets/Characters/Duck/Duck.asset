@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105a15e26e5ce0d459b7a778c2ca7e2e, type: 3}
+  m_Name: Duck
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  animatorController: {fileID: 22100000, guid: 40fa762192d94304eb6c21422d39cc0b, type: 2}
