@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : ScriptableObject {
+public abstract class Weapon : MonoBehaviour {
 
     [HideInInspector]
-    public bool isHoldingTrigger;
+    public bool isPressingTrigger;
 
-    public void Initialize()
+    public void Awake()
     {
-
+        
     }
 
 }

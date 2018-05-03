@@ -13,3 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   animatorController: {fileID: 22100000, guid: 40fa762192d94304eb6c21422d39cc0b, type: 2}
+  startingWeapon: {fileID: 114452511589450488, guid: 1449c5de1a0ffdf4b903a1ae692b30e0,
+    type: 2}
