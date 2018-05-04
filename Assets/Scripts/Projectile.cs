@@ -20,7 +20,20 @@ public abstract class Projectile : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.gameObject);
+
+        if (collider.tag == "Terrain")
+        {
+
+            Destroy(gameObject);
+        }
+
+        if (collider.GetComponent<PlacyerController>() != null)
+        {
+            PlacyerController player = collider.GetComponent<PlacyerController>();
+            //player.TakeDamage();
+            Destroy(gameObject);
+
+        }
 
     }
 }
