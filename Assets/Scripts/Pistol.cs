@@ -5,13 +5,15 @@ using UnityEngine;
 public class Pistol : Weapon {
 
     public float fireRate;
-    private float fireCooldown;
     public GameObject projectile;
     public GameObject muzzleFlare;
 
     public Transform spawnPoint;
     public Transform muzzleFlareSpawnPoint;
 
+    private float fireCooldown;
+    private Animator animator;
+    private SpriteRenderer sr;
 
     new void Awake()
     {
@@ -22,7 +24,8 @@ public class Pistol : Weapon {
 
         spawnPoint = transform.Find("ProjectileSpawnPoint");
         muzzleFlareSpawnPoint = transform.Find("MuzzleFlareSpawnPoint");
-
+        animator = transform.Find("Sprite").GetComponent<Animator>();
+        sr = transform.Find("Sprite").GetComponent<SpriteRenderer>(); ;
 
     }
 
@@ -49,8 +52,17 @@ public class Pistol : Weapon {
 
     void Fire()
     {
-        Instantiate(muzzleFlare, muzzleFlareSpawnPoint.position, transform.rotation);
+        if (sr.flipY == true)
+        {
+            animator.SetTrigger("FireTrigger");
+        }
+        else
+        {
+            animator.SetTrigger("FireTriggerFlipped");
+        }
 
+        Instantiate(muzzleFlare, muzzleFlareSpawnPoint.position, transform.rotation);
+        
         Instantiate(projectile, spawnPoint.position, transform.rotation);
     }
 }
