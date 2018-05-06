@@ -31,7 +31,7 @@ public class PeterController : MonoBehaviour
             target = FindObjectOfType<PlacyerController>().gameObject;
         }
 
-        if (! (transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
+        if (!(transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
         {
             FollowPlayer();
 

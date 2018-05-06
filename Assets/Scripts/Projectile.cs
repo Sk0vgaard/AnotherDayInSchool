@@ -30,6 +30,8 @@ public abstract class Projectile : MonoBehaviour {
         if (collider.GetComponent<PlacyerController>() != null)
         {
             PlacyerController player = collider.GetComponent<PlacyerController>();
+
+
             //player.TakeDamage();
             Destroy(gameObject);
 
