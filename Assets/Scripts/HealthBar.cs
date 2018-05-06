@@ -11,13 +11,13 @@ public class HealthBar : MonoBehaviour
     void Awake()
     {
         character = transform.parent.GetComponent<HealthSystem>();
-        redBar = transform.parent.Find("HealthBar Red").gameObject;
+        redBar = transform.parent.Find("HealthBar").Find("RedBar").gameObject;
     }
 
     // Use this for initialization
     void Start ()
-	{
-	    localScale.x = (float)character.healthAmount / 40f;
+    {
+        localScale.x = (float) character.healthAmount / 40f;
         localScale = transform.localScale;
 	    redBar.transform.localScale = new Vector2(2.5f, 0.3f);
 	}
