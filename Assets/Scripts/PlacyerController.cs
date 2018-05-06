@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlacyerController : MonoBehaviour {
+public class PlacyerController : HealthSystem {
 
     public Character character;
     public Animator animator;
