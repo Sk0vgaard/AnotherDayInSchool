@@ -4,15 +4,14 @@ using UnityEngine;
 
 public abstract class HealthSystem : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private int healthAmount;
+    [HideInInspector]
+    public int healthAmount;
     public int maxHealth;
 
 	// Use this for initialization
-	void Start ()
+	public void Start ()
 	{
 	    healthAmount = maxHealth;
-	    rb = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -20,8 +19,9 @@ public abstract class HealthSystem : MonoBehaviour
 
 	}
 
-    void TakeDamage(int damageTaken)
+    public void TakeDamage(int damageTaken)
     {
+        Debug.Log(damageTaken + " " + healthAmount);
         healthAmount -= damageTaken;
         if (healthAmount <= 0)
         {

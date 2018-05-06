@@ -28,14 +28,21 @@ public class PeterController : MonoBehaviour
 	void Update () {
         if (target == null)
         {
-            target = FindObjectOfType<PlacyerController>().gameObject;
+            PlacyerController playerTarget = FindObjectOfType<PlacyerController>();
+            if (playerTarget != null)
+            {
+                target = playerTarget.gameObject;
+            }
         }
+	    if (target != null)
+	    {
+	        if (!(transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
+	        {
+	            FollowPlayer();
 
-        if (! (transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
-        {
-            FollowPlayer();
-
+	        }
         }
+        
 
         if (readyToStartCoroutine)
         {

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Projectile : MonoBehaviour {
-
-
+public abstract class Projectile : MonoBehaviour
+{
+    public int damage;
 
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		
 	}
 	
@@ -23,14 +23,13 @@ public abstract class Projectile : MonoBehaviour {
 
         if (collider.tag == "Terrain")
         {
-
             Destroy(gameObject);
         }
 
-        if (collider.GetComponent<PlacyerController>() != null)
+        if (collider.GetComponent<HealthSystem>() != null)
         {
-            PlacyerController player = collider.GetComponent<PlacyerController>();
-            //player.TakeDamage();
+            HealthSystem hp = collider.GetComponent<HealthSystem>();
+            hp.TakeDamage(damage);
             Destroy(gameObject);
 
         }
