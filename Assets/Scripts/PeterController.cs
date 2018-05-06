@@ -42,7 +42,6 @@ public class PeterController : MonoBehaviour
                 FollowPlayer();
             }
 
-
             if (readyToStartCoroutine)
             {
                 StartCoroutine(PeterRoutine());

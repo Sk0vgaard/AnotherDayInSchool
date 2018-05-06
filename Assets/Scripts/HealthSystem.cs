@@ -8,8 +8,21 @@ public abstract class HealthSystem : MonoBehaviour
     public int healthAmount;
     public int maxHealth;
 
-	// Use this for initialization
-	public void Start ()
+
+
+    public void Awake()
+    {
+        GameObject healthBar = Resources.Load("HealthBar") as GameObject;
+        GameObject instance = Instantiate(healthBar, transform.position, transform.rotation) as GameObject;
+        instance.transform.SetParent(gameObject.transform);
+        instance.SetActive(true);
+        // setting the character one the healthbar since when the healthbar is instansiated it doesnt have any parent
+        instance.GetComponent<HealthBar>().character = this;
+
+    }
+
+    // Use this for initialization
+    public void Start ()
 	{
 	    healthAmount = maxHealth;
 	}

@@ -14,8 +14,9 @@ public class PlacyerController : HealthSystem {
     private bool flipped;
 
 
-    private void Awake()
+    new void Awake()
     {
+        base.Awake();        
         character.Initialize();
         rb = GetComponent<Rigidbody2D>();
         sr = transform.Find("Sprite").GetComponent<SpriteRenderer>();
