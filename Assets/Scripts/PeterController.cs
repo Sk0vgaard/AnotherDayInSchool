@@ -24,22 +24,29 @@ public class PeterController : MonoBehaviour
         readyToStartCoroutine = true;
         target = FindObjectOfType<PlacyerController>().gameObject;
 	}
-	
-	void Update () {
+
+    void Update()
+    {
         if (target == null)
         {
-            target = FindObjectOfType<PlacyerController>().gameObject;
+            PlacyerController playerTarget = FindObjectOfType<PlacyerController>();
+            if (playerTarget != null)
+            {
+                target = playerTarget.gameObject;
+            }
         }
-
-        if (!(transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
+        if (target != null)
         {
-            FollowPlayer();
+            if (!(transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
+            {
+                FollowPlayer();
+            }
 
-        }
 
-        if (readyToStartCoroutine)
-        {
-            StartCoroutine(PeterRoutine());
+            if (readyToStartCoroutine)
+            {
+                StartCoroutine(PeterRoutine());
+            }
         }
     }
 

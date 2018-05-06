@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlacyerController : MonoBehaviour {
+public class PlacyerController : HealthSystem {
 
     public Character character;
     public Animator animator;
@@ -23,12 +23,12 @@ public class PlacyerController : MonoBehaviour {
         animator.runtimeAnimatorController = character.animatorController;
     }
 
-    void Start () {
-
+    new void Start () {
+        base.Start();
         GameObject weaponGameObject = Instantiate(character.startingWeapon.gameObject, transform.position, transform.rotation) as GameObject;
         weaponGameObject.transform.SetParent(this.transform);
         currentWeapon = weaponGameObject.GetComponent<Weapon>();
-        //animator.SetFloat("speed", 10.0f);
+        
     }
 	
 	void Update () {
