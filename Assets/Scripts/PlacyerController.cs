@@ -7,6 +7,8 @@ public class PlacyerController : HealthSystem {
     public Character character;
     public Animator animator;
 
+    public bool disableMovements;
+
     private Vector2 moveDirection;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -33,7 +35,6 @@ public class PlacyerController : HealthSystem {
     }
 	
 	void Update () {
-        moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         if (rb.velocity.x == 0 && rb.velocity.y == 0)
         {
             animator.SetFloat("speed", 0f);
@@ -54,6 +55,34 @@ public class PlacyerController : HealthSystem {
             sr.flipX = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            disableMovements = !disableMovements;
+        }
+
+        if (!disableMovements)
+        {
+            Movement();
+            HandleShooting();
+            RotateWeapon();
+        }
+        else
+        {
+            moveDirection = new Vector2(0,0);
+            if (currentWeapon != null)
+            {
+                currentWeapon.isPressingTrigger = false;
+            }
+        }
+    }
+
+    void Movement()
+    {
+        moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+    }
+
+    void HandleShooting()
+    {
         if (Input.GetKey(KeyCode.Mouse0))
         {
             if (currentWeapon != null)
@@ -69,7 +98,10 @@ public class PlacyerController : HealthSystem {
                 currentWeapon.isPressingTrigger = false;
             }
         }
+    }
 
+    void RotateWeapon()
+    {
         if (currentWeapon != null)
         {
             Quaternion rotation = CalculateRotationToLookAtMouse(currentWeapon.transform);
@@ -78,19 +110,11 @@ public class PlacyerController : HealthSystem {
             if (rotation.eulerAngles.z > 90 && rotation.eulerAngles.z <= 270)
             {
                 currentWeapon.transform.Find("Sprite").GetComponent<SpriteRenderer>().flipY = true;
-                //rotator.rotation = Quaternion.Euler(0, rotator.eulerAngles.y, rotator.eulerAngles.z); //.GetComponent<SpriteRenderer>().flipY = false;
-                //currentWeapon.transform.Find("Rotator").transform.RotateAround(currentWeapon.transform.Find("Rotator").transform.position, transform.up, 180);
             }
-            else if(rotation.eulerAngles.z <= 90 || rotation.eulerAngles.z > 270)
+            else if (rotation.eulerAngles.z <= 90 || rotation.eulerAngles.z > 270)
             {
                 currentWeapon.transform.Find("Sprite").GetComponent<SpriteRenderer>().flipY = false;
-
-                //rotator.rotation = Quaternion.Euler(180, rotator.eulerAngles.y, rotator.eulerAngles.z);
-                //currentWeapon.transform.Find("Rotator").transform.RotateAround(currentWeapon.transform.Find("Rotator").transform.position, transform.up, 0);
-
-
             }
-
         }
     }
 
