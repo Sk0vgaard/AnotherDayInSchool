@@ -28,15 +28,9 @@ public abstract class Projectile : MonoBehaviour
 
         if (collider.GetComponent<HealthSystem>() != null)
         {
-<<<<<<< HEAD
-            PlacyerController player = collider.GetComponent<PlacyerController>();
-
-
             //player.TakeDamage();
-=======
             HealthSystem hp = collider.GetComponent<HealthSystem>();
             hp.TakeDamage(damage);
->>>>>>> bd8864c29374e0454ddfff0af81b4b4948164c51
             Destroy(gameObject);
 
         }
