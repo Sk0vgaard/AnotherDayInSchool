@@ -45,3 +45,6 @@ TagManager:
   - name: Character
     uniqueID: 3551188155
     locked: 0
+  - name: FadeEffect
+    uniqueID: 828971171
+    locked: 0

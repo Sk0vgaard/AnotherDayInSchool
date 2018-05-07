@@ -17,9 +17,20 @@ public class Door : MonoBehaviour {
     public bool disabled;
     private PlacyerController player;
     private bool walkPlayerToCenter, walkPlayerAwayFromCenter;
+    private Animator canvasAnimator;
 
-	// Use this for initialization
-	void Start () {
+
+    private void Awake()
+    {
+        GameObject canvas = FindObjectOfType<PauseMenu>().gameObject;
+        if (canvas != null)
+        {
+            canvasAnimator = canvas.transform.Find("FadeToBlackImage").GetComponent<Animator>();
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -75,6 +86,10 @@ public class Door : MonoBehaviour {
         {
             if (disabled)
             {
+                if (canvasAnimator)
+                {
+                    canvasAnimator.SetBool("Black", false);
+                }
                 player = other.GetComponent<PlacyerController>();
                 walkPlayerAwayFromCenter = true;
             }
@@ -99,6 +114,10 @@ public class Door : MonoBehaviour {
 
     void WalkThroughDoor()
     {
+        if (canvasAnimator)
+        {
+            canvasAnimator.SetBool("Black",true);
+        }
         walkPlayerToCenter = true;
         player.disableMovements = true;
         exit.disabled = true;
