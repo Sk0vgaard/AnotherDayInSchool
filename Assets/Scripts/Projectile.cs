@@ -7,8 +7,12 @@ public abstract class Projectile : MonoBehaviour
     public int damage;
 
 
-	// Use this for initialization
-	public void Start () {
+    public void Awake()
+    {
+        
+    }
+    // Use this for initialization
+    public void Start () {
 		
 	}
 	
@@ -17,13 +21,14 @@ public abstract class Projectile : MonoBehaviour
 		
 	}
 
+    public abstract void OnHit();
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
 
         if (collider.tag == "Terrain")
         {
-            Destroy(gameObject);
+            OnHit();
         }
 
         if (collider.GetComponent<HealthSystem>() != null)
@@ -31,8 +36,7 @@ public abstract class Projectile : MonoBehaviour
             //player.TakeDamage();
             HealthSystem hp = collider.GetComponent<HealthSystem>();
             hp.TakeDamage(damage);
-            Destroy(gameObject);
-
+            OnHit();
         }
 
     }

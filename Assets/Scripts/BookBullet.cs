@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BookBullet : Projectile {
+    
 
-	// Use this for initialization
-	new void Start () {
+    // Use this for initialization
+    new void Start () {
 		base.Start();
 	}
 	
@@ -13,4 +14,10 @@ public class BookBullet : Projectile {
 	void Update () {
 		
 	}
+
+    public override void OnHit()
+    {
+        Destroy(gameObject);
+
+    }
 }

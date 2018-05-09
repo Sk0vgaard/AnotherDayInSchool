@@ -64,7 +64,6 @@ public class PlacyerController : HealthSystem {
         {
             Movement();
             HandleShooting();
-            RotateWeapon();
         }
         else
         {
@@ -121,6 +120,11 @@ public class PlacyerController : HealthSystem {
     void FixedUpdate()
     {
         rb.velocity = moveDirection * character.moveSpeed;
+        if (!disableMovements)
+        {
+            RotateWeapon();
+
+        }
     }
 
     private Quaternion CalculateRotationToLookAtMouse(Transform rotatatingObjTransform)
