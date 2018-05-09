@@ -15,7 +15,7 @@ public class BookBullet : Projectile {
 		
 	}
 
-    public override void OnHit()
+    public override void Hit()
     {
         Destroy(gameObject);
 

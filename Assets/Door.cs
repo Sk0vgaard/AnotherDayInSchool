@@ -12,6 +12,8 @@ public enum exitDir
 
 public class Door : MonoBehaviour {
 
+
+    public RoomController room;
     public exitDir exitDirection;
     public Door exit;
     public bool disabled;
@@ -72,6 +74,7 @@ public class Door : MonoBehaviour {
             {
                 walkPlayerAwayFromCenter = false;
                 player.disableMovements = false;
+                room.Enter(player);
                 player = null;
 
             }
@@ -120,6 +123,7 @@ public class Door : MonoBehaviour {
         }
         walkPlayerToCenter = true;
         player.disableMovements = true;
+        room.Exit();
         exit.disabled = true;
     }
 }

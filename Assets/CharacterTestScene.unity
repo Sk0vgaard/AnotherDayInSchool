@@ -152,11 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 50623727600203528, guid: e21fc4a2eccdc784396749f69ea8dec6,
-        type: 2}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e21fc4a2eccdc784396749f69ea8dec6, type: 2}
   m_IsPrefabParent: 0
@@ -225,7 +220,7 @@ Camera:
   far clip plane: 1000
   field of view: 80
   orthographic: 1
-  orthographic size: 12.68
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -311,7 +306,7 @@ GameObject:
   - component: {fileID: 978092324}
   m_Layer: 0
   m_Name: Tilemap (1)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2457,11 +2452,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4790498825429116, guid: bca9c93759557884cb2302953b2d226c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 18.81
       objectReference: {fileID: 0}
     - target: {fileID: 4790498825429116, guid: bca9c93759557884cb2302953b2d226c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.84
       objectReference: {fileID: 0}
     - target: {fileID: 4790498825429116, guid: bca9c93759557884cb2302953b2d226c, type: 2}
       propertyPath: m_LocalPosition.z

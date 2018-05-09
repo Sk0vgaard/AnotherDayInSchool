@@ -23,7 +23,7 @@ public class PistolBullet : Projectile {
 		
 	}
 
-    public override void OnHit()
+    public override void Hit()
     {
         Instantiate(smokeOffect,transform.position,transform.rotation);
         Destroy(gameObject);
