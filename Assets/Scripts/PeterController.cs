@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PeterController : MonoBehaviour
+public class PeterController : Enemy
 {
 
     public float moveSpeed;
@@ -19,21 +19,45 @@ public class PeterController : MonoBehaviour
     private bool readyToStartCoroutine;
 
 
-	void Start () {
+    void Awake()
+    {
+        base.Awake();
+        anim = transform.Find("Peter").GetComponent<Animator>();
+        bookBullet = Resources.Load("BookBullet") as GameObject;
+        bookSpawnPoint = transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("BookSpawnPoint");
+
+    }
+
+    new void Start () {
+        base.Start();
         readyToStartCoroutine = true;
         target = FindObjectOfType<PlacyerController>().GetComponent<HealthSystem>();
 	}
 
     void Update()
     {
-        if (target == null)
+        if (isDead)
+        {
+            return;
+        }
+
+        if (player)
+        {
+            target = player;
+        }
+        else
+        {
+            target = null;
+        }
+
+        /*if (target == null)
         {
             PlacyerController playerTarget = FindObjectOfType<PlacyerController>();
             if (playerTarget != null)
             {
                 target = playerTarget.GetComponent<HealthSystem>();
             }
-        }
+        }*/
         if (target != null)
         {
             if (!target.isDead)
@@ -50,14 +74,6 @@ public class PeterController : MonoBehaviour
             }
             
         }
-    }
-
-    void Awake ()
-    {
-        anim = transform.Find("Peter").GetComponent<Animator>();
-        bookBullet = Resources.Load("BookBullet") as GameObject;
-        bookSpawnPoint = transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("BookSpawnPoint");
-
     }
 
     void FollowPlayer()
@@ -98,14 +114,25 @@ public class PeterController : MonoBehaviour
         readyToStartCoroutine = true;
     }
 
+    void InstantiateBook()
+    {
+        GameObject bookGameObject = Instantiate(bookBullet, bookSpawnPoint.position, transform.rotation) as GameObject;
+        bookGameObject.GetComponent<Projectile>().owner = gameObject;
+
+    }
+
     IEnumerator ThrowBook()
     {
         anim.SetTrigger("attackTrigger");
         yield return new WaitForSeconds(COUNTER);
-        Instantiate(bookBullet, bookSpawnPoint.position, transform.rotation);
+        InstantiateBook();
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(false);
         yield return new WaitForSeconds(COUNTER);
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(true);
     }
 
+    public override void Die()
+    {
+        isDead = true;
+    }
 }

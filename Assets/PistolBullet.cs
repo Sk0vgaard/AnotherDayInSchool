@@ -6,6 +6,7 @@ public class PistolBullet : Projectile {
 
 
     private GameObject smokeOffect;
+    
 
     new void Awake()
     {
@@ -23,9 +24,24 @@ public class PistolBullet : Projectile {
 		
 	}
 
-    public override void Hit()
+    public override void Hit(Collider2D collider)
     {
-        Instantiate(smokeOffect,transform.position,transform.rotation);
-        Destroy(gameObject);
+        if (collider.tag == "Terrain")
+        {
+            Instantiate(smokeOffect, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+
+        if (collider.GetComponent<HealthSystem>() != null)
+        {
+            //player.TakeDamage();
+            HealthSystem hp = collider.GetComponent<HealthSystem>();
+            if (!(owner == hp.gameObject))
+            {
+                hp.TakeDamage(damage);
+                Instantiate(smokeOffect, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }        
+        }
     }
 }

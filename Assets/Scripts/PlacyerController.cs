@@ -30,7 +30,9 @@ public class PlacyerController : HealthSystem {
         base.Start();
         GameObject weaponGameObject = Instantiate(character.startingWeapon.gameObject, transform.position, transform.rotation) as GameObject;
         weaponGameObject.transform.SetParent(this.transform);
-        currentWeapon = weaponGameObject.GetComponent<Weapon>();
+        Weapon weapon = weaponGameObject.GetComponent<Weapon>();
+        weapon.holder = GetComponent<HealthSystem>();
+        currentWeapon = weapon;
         
     }
 	

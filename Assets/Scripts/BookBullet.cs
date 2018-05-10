@@ -15,9 +15,24 @@ public class BookBullet : Projectile {
 		
 	}
 
-    public override void Hit()
+    public override void Hit(Collider2D collider)
     {
-        Destroy(gameObject);
+        if (collider.tag == "Terrain")
+        {
+            Destroy(gameObject);
+        }
+
+        if (collider.GetComponent<HealthSystem>() != null)
+        {
+            //player.TakeDamage();
+            HealthSystem hp = collider.GetComponent<HealthSystem>();
+            if (!(owner == hp.gameObject))
+            {
+                hp.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+
+        }
 
     }
 }

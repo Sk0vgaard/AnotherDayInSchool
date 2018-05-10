@@ -63,6 +63,11 @@ public class Pistol : Weapon {
 
         Instantiate(muzzleFlare, muzzleFlareSpawnPoint.position, transform.rotation);
         
-        Instantiate(projectile, spawnPoint.position, transform.rotation);
+        GameObject projectileGameObject = Instantiate(projectile, spawnPoint.position, transform.rotation) as GameObject;
+        Projectile projectileInstance = projectileGameObject.GetComponent<Projectile>();
+        if (holder != null)
+        {
+            projectileInstance.owner = holder.gameObject;
+        }
     }
 }

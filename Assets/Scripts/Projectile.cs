@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     public int damage;
-
+    public GameObject owner;
 
     public void Awake()
     {
@@ -21,14 +21,18 @@ public abstract class Projectile : MonoBehaviour
 		
 	}
 
-    public abstract void Hit();
+    public abstract void Hit(Collider2D collider);
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        Hit(collider);
+    }
 
+    public void StandardHitMethod(Collider2D collider)
+    {
         if (collider.tag == "Terrain")
         {
-            Hit();
+            DestroyObject(gameObject);
         }
 
         if (collider.GetComponent<HealthSystem>() != null)
@@ -36,8 +40,7 @@ public abstract class Projectile : MonoBehaviour
             //player.TakeDamage();
             HealthSystem hp = collider.GetComponent<HealthSystem>();
             hp.TakeDamage(damage);
-            Hit();
+            DestroyObject(gameObject);
         }
-
     }
 }
