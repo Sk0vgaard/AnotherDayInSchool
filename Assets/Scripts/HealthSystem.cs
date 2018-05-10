@@ -7,8 +7,8 @@ public abstract class HealthSystem : MonoBehaviour
     [HideInInspector]
     public int healthAmount;
     public int maxHealth;
-
-
+    [HideInInspector]
+    public bool isDead;
 
     public void Awake()
     {
@@ -32,12 +32,14 @@ public abstract class HealthSystem : MonoBehaviour
 
 	}
 
+    public abstract void Die(); 
+
     public void TakeDamage(int damageTaken)
     {
         healthAmount -= damageTaken;
         if (healthAmount <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 }

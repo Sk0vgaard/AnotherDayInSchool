@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Enemy1 : Enemy {
 
-	// Use this for initialization
-	new void Start () {
+
+
+    // Use this for initialization
+    new void Start () {
         base.Start();
 	}
 	
@@ -13,4 +15,10 @@ public class Enemy1 : Enemy {
 	void Update () {
 		
 	}
+
+    public override void Die()
+    {
+        isDead = true;
+        Destroy(gameObject);
+    }
 }

@@ -13,7 +13,7 @@ public class PeterController : MonoBehaviour
     private static readonly float MOVE_THRESHHOLD = 0.3f;
 
     private GameObject bookBullet;
-    private GameObject target;
+    private HealthSystem target;
     private Transform bookSpawnPoint;
 
     private bool readyToStartCoroutine;
@@ -21,7 +21,7 @@ public class PeterController : MonoBehaviour
 
 	void Start () {
         readyToStartCoroutine = true;
-        target = FindObjectOfType<PlacyerController>().gameObject;
+        target = FindObjectOfType<PlacyerController>().GetComponent<HealthSystem>();
 	}
 
     void Update()
@@ -31,20 +31,24 @@ public class PeterController : MonoBehaviour
             PlacyerController playerTarget = FindObjectOfType<PlacyerController>();
             if (playerTarget != null)
             {
-                target = playerTarget.gameObject;
+                target = playerTarget.GetComponent<HealthSystem>();
             }
         }
         if (target != null)
         {
-            if (!(transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
+            if (!target.isDead)
             {
-                FollowPlayer();
-            }
+                if (!(transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
+                {
+                    FollowPlayer();
+                }
 
-            if (readyToStartCoroutine)
-            {
-                StartCoroutine(PeterRoutine());
+                if (readyToStartCoroutine)
+                {
+                    StartCoroutine(PeterRoutine());
+                }
             }
+            
         }
     }
 

@@ -60,7 +60,7 @@ public class PlacyerController : HealthSystem {
             disableMovements = !disableMovements;
         }
 
-        if (!disableMovements)
+        if (!disableMovements && !isDead)
         {
             Movement();
             HandleShooting();
@@ -120,7 +120,7 @@ public class PlacyerController : HealthSystem {
     void FixedUpdate()
     {
         rb.velocity = moveDirection * character.moveSpeed;
-        if (!disableMovements)
+        if (!disableMovements && !isDead)
         {
             RotateWeapon();
 
@@ -135,5 +135,11 @@ public class PlacyerController : HealthSystem {
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         return Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    public override void Die()
+    {
+        isDead = true;
+        //disableMovements = true;
     }
 }
