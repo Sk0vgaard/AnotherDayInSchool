@@ -17,19 +17,5 @@ public class EnemiesActivateOnEventRoom : Room
         this.player = null;
     }
 
-    public void ActivateEnemies()
-    {
-        foreach (var enemy in enemies)
-        {
-            enemy.player = player;
-        }
-    }
-
-    public void DeactivateEnemies()
-    {
-        foreach (var enemy in enemies)
-        {
-            enemy.player = null;
-        }
-    }
+    
 }
