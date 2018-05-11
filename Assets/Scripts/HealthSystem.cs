@@ -35,9 +35,15 @@ public abstract class HealthSystem : MonoBehaviour
 
     public void TakeDamage(int damageTaken)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         healthAmount -= damageTaken;
         if (healthAmount <= 0)
         {
+            healthAmount = 0;
             Die();
         }
     }

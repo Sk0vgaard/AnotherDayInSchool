@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerForceWalk : MonoBehaviour {
 
     public Transform destination;
-    public EnemiesActivateOnEventRoom room;
+    public BossRoom1 room;
     private bool movePlayer;
     private PlacyerController player;
 
@@ -27,9 +27,7 @@ public class TriggerForceWalk : MonoBehaviour {
                 {
                     movePlayer = false;
                     player.disableMovements = false;
-                    Debug.Log("ONCE");
-                    room.ActivateEnemies(player);
-
+                    room.StartFight(player);
                 }
             }            
         }
@@ -49,10 +47,5 @@ public class TriggerForceWalk : MonoBehaviour {
         player.disableMovements = true;
         movePlayer = true;
         this.player = player; 
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
     }
 }
