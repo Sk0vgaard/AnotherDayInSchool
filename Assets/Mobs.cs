@@ -16,7 +16,7 @@ public class Mobs : Enemy {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (!isDead)
+	    if (!isDead && player != null)
 	    {
 	        transform.LookAt(player.transform.position);
 	        transform.Rotate(new Vector3(0, -90, 0), Space.Self);//correcting the original rotation
@@ -31,7 +31,7 @@ public class Mobs : Enemy {
 	        else
 	        {
 	            // Do damage to player
-	            player.TakeDamage(1);
+	            
 	        }
 
         }
@@ -43,7 +43,7 @@ public class Mobs : Enemy {
     {
         isDead = true;
         Instantiate(blood, transform.position, transform.rotation);
-        transform.localScale = new Vector3(0,0,0);
+        Destroy(gameObject);
 
     }
 
@@ -52,5 +52,11 @@ public class Mobs : Enemy {
         base.Awake();
         blood = Resources.Load("blood") as GameObject;
         
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.GetComponent<PlacyerController>())
+        col.gameObject.GetComponent<PlacyerController>().TakeDamage(1);
     }
 }
