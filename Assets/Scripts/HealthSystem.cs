@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class HealthSystem : MonoBehaviour
 {
-    [HideInInspector]
     public int healthAmount;
     public int maxHealth;
     [HideInInspector]
