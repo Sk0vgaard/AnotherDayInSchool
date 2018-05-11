@@ -15,6 +15,8 @@ public class Pistol : Weapon {
     private Animator animator;
     private SpriteRenderer sr;
 
+    private AudioSource fire;
+
     new void Awake()
     {
         base.Awake();
@@ -26,6 +28,8 @@ public class Pistol : Weapon {
         muzzleFlareSpawnPoint = transform.Find("MuzzleFlareSpawnPoint");
         animator = transform.Find("Sprite").GetComponent<Animator>();
         sr = transform.Find("Sprite").GetComponent<SpriteRenderer>(); ;
+
+        fire = GetComponent<AudioSource>();
 
     }
 
@@ -62,6 +66,8 @@ public class Pistol : Weapon {
         }
 
         Instantiate(muzzleFlare, muzzleFlareSpawnPoint.position, transform.rotation);
+
+        fire.Play();
         
         GameObject projectileGameObject = Instantiate(projectile, spawnPoint.position, transform.rotation) as GameObject;
         Projectile projectileInstance = projectileGameObject.GetComponent<Projectile>();
