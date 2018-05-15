@@ -41,6 +41,7 @@ public class Mobs : Enemy {
 
     public override void Die()
     {
+        base.Die();
         isDead = true;
         Instantiate(blood, transform.position, transform.rotation);
         Destroy(gameObject);

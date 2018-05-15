@@ -18,6 +18,7 @@ public class Enemy1 : Enemy {
 
     public override void Die()
     {
+        base.Die();
         isDead = true;
         Destroy(gameObject);
     }

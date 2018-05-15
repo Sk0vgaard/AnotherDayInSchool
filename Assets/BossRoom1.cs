@@ -29,7 +29,6 @@ public class BossRoom1 : Room
         {
             blockDoor.Close();
         }
-
     }
 
 

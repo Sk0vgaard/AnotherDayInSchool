@@ -133,6 +133,7 @@ public class PeterController : Enemy
 
     public override void Die()
     {
+        base.Die();
         isDead = true;
     }
 }

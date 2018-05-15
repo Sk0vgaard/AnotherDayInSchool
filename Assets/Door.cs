@@ -99,7 +99,10 @@ public class Door : MonoBehaviour {
             else
             {
                 player = other.GetComponent<PlacyerController>();
-                WalkThroughDoor();
+                if (room.roomClearOfEnemies)
+                {
+                    WalkThroughDoor();
+                }
             }           
         }
     }
