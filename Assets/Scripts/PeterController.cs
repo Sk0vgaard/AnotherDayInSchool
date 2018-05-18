@@ -6,13 +6,12 @@ using UnityEngine;
 
 public class PeterController : Enemy
 {
-    [SerializeField] private string newLevel;
-
     public float moveSpeed;
 
     private Animator anim;
     private static readonly float COUNTER = 0.42f;
     private static readonly float MOVE_THRESHHOLD = 0.3f;
+
 
     private GameObject bookBullet;
     private HealthSystem target;
@@ -40,7 +39,8 @@ public class PeterController : Enemy
     {
         if (isDead)
         {
-            SceneManager.LoadScene(newLevel);
+            //TODO SKOV: Make animation.
+            return;
         }
 
         if (player)
@@ -138,5 +138,7 @@ public class PeterController : Enemy
         base.Die();
         isDead = true;
     }
+
+    
 
 }
