@@ -11,11 +11,17 @@ public abstract class Enemy : HealthSystem {
     new public void Awake()
     {
         base.Awake();
-        GameObject parent = transform.parent.gameObject;
-        Debug.Log("Parent: " + parent);
-        Debug.Log(gameObject.name);
+		if (transform.parent != null) {
+			GameObject parent = transform.parent.gameObject;
+			if (parent != null) {
+				Debug.Log("Parent: " + parent);
+				Debug.Log(gameObject.name);
+				room = transform.parent.gameObject.GetComponent<Room>();
+			}
+		}
+       
 
-        room = transform.parent.gameObject.GetComponent<Room>();
+        
     }
 
 	// Use this for initialization

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public abstract class Room : MonoBehaviour {
 
-
-    public  List<Enemy> enemies;
+    public List<Enemy> enemies;
     public bool roomClearOfEnemies;
 
     public void Awake()
