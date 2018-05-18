@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobWalkStraightLine : MonoBehaviour {
+public class MobWalkStraightLine : Enemy {
 	public float speed = 3f;
 
 	// Use this for initialization
@@ -13,5 +13,11 @@ public class MobWalkStraightLine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.Translate (Vector2.down * speed * Time.deltaTime);
+	}
+
+	void OnCollisionStay2D(Collision2D col)
+	{
+		if (col.gameObject.GetComponent<PlacyerController>())
+			col.gameObject.GetComponent<PlacyerController>().TakeDamage(100000);
 	}
 }
