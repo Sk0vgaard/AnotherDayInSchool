@@ -1,16 +1,17 @@
 ﻿using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PeterController : Enemy
 {
-
     public float moveSpeed;
 
     private Animator anim;
     private static readonly float COUNTER = 0.42f;
     private static readonly float MOVE_THRESHHOLD = 0.3f;
+
 
     private GameObject bookBullet;
     private HealthSystem target;
@@ -38,6 +39,7 @@ public class PeterController : Enemy
     {
         if (isDead)
         {
+            //TODO SKOV: Make animation.
             return;
         }
 
@@ -136,4 +138,7 @@ public class PeterController : Enemy
         base.Die();
         isDead = true;
     }
+
+    
+
 }
