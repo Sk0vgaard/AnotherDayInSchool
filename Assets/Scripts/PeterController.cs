@@ -1,10 +1,12 @@
 ﻿using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PeterController : Enemy
 {
+    [SerializeField] private string newLevel;
 
     public float moveSpeed;
 
@@ -38,7 +40,7 @@ public class PeterController : Enemy
     {
         if (isDead)
         {
-            return;
+            SceneManager.LoadScene(newLevel);
         }
 
         if (player)
@@ -136,4 +138,5 @@ public class PeterController : Enemy
         base.Die();
         isDead = true;
     }
+
 }
