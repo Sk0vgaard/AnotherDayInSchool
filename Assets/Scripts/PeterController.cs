@@ -39,7 +39,6 @@ public class PeterController : Enemy
     {
         if (isDead)
         {
-            //TODO SKOV: Make animation.
             return;
         }
 
@@ -135,6 +134,7 @@ public class PeterController : Enemy
 
     public override void Die()
     {
+        anim.SetTrigger("deathTrigger");
         base.Die();
         isDead = true;
     }
