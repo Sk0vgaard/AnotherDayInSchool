@@ -22,4 +22,14 @@ public class Enemy1 : Enemy {
         isDead = true;
         Destroy(gameObject);
     }
+
+    public override void Activate(PlacyerController player)
+    {
+        this.player = player;
+    }
+
+    public override void Deactivate(PlacyerController player)
+    {
+        this.player = null;
+    }
 }

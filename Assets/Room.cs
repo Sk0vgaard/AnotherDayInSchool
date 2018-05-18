@@ -23,7 +23,8 @@ public abstract class Room : MonoBehaviour {
     {
         foreach (var enemy in enemies)
         {
-            enemy.player = player;
+            enemy.Activate(player);
+            //enemy.player = player;
         }
     }
 
@@ -31,7 +32,8 @@ public abstract class Room : MonoBehaviour {
     {
         foreach (var enemy in enemies)
         {
-            enemy.player = null;
+            enemy.Deactivate(null);
+            //enemy.player = null;
         }
     }
 

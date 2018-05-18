@@ -36,4 +36,8 @@ public abstract class Enemy : HealthSystem {
         }
     }
 
+    public abstract void Activate(PlacyerController player);
+    public abstract void Deactivate(PlacyerController player);
+
+
 }

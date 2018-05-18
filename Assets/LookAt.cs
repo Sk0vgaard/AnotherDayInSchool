@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateObject : MonoBehaviour {
+public class LookAt : MonoBehaviour {
+
+    public GameObject poi;
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +13,10 @@ public class RotateObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (poi != null)
+        {
+            transform.LookAt(poi.transform);
+
+        }
+    }
 }

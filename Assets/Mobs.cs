@@ -60,4 +60,14 @@ public class Mobs : Enemy {
         if (col.gameObject.GetComponent<PlacyerController>())
         col.gameObject.GetComponent<PlacyerController>().TakeDamage(1);
     }
+
+    public override void Activate(PlacyerController player)
+    {
+        this.player = player;
+    }
+
+    public override void Deactivate(PlacyerController player)
+    {
+        this.player = null;
+    }
 }

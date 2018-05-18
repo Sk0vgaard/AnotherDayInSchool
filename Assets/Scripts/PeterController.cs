@@ -136,4 +136,14 @@ public class PeterController : Enemy
         base.Die();
         isDead = true;
     }
+
+    public override void Activate(PlacyerController player)
+    {
+        this.player = player;
+    }
+
+    public override void Deactivate(PlacyerController player)
+    {
+        this.player = null;
+    }
 }
