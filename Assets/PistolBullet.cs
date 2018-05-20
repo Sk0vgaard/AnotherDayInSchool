@@ -20,8 +20,8 @@ public class PistolBullet : Projectile {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	new void Update () {
+        base.Update();
 	}
 
     public override void Hit(Collider2D collider)

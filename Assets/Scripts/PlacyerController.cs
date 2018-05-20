@@ -142,6 +142,9 @@ public class PlacyerController : HealthSystem {
     public override void Die()
     {
         isDead = true;
+        GameObject bloodSplatter = Resources.Load("blood") as GameObject;
+        Instantiate(bloodSplatter, transform.position, transform.rotation);
+        transform.Find("Sprite").gameObject.SetActive(false);
         //disableMovements = true;
     }
 }

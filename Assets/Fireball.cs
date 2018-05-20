@@ -6,7 +6,6 @@ public class Fireball : Projectile {
 
     private GameObject smokeOffect;
 
-
     new void Awake()
     {
         base.Awake();
@@ -14,15 +13,17 @@ public class Fireball : Projectile {
     }
 	
 	// Update is called once per frame
-	void Update () {
-       transform.Translate(Vector3.forward * 25 *Time.deltaTime);
-	}
+	new void Update () {
+        //base.Update();
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+    }
 
     public override void Hit(Collider2D collider)
     {
         if (collider.tag == "Terrain")
         {
-            Instantiate(smokeOffect, transform.position, transform.rotation);
+            Instantiate(smokeOffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -33,8 +34,7 @@ public class Fireball : Projectile {
             if (!(owner == hp.gameObject))
             {
                 hp.TakeDamage(damage);
-                Instantiate(smokeOffect, transform.position, transform.rotation);
-                Destroy(gameObject);
+                Instantiate(smokeOffect, transform.position, Quaternion.identity);
             }
         }
     }
