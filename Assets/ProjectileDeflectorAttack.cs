@@ -42,7 +42,8 @@ public class ProjectileDeflectorAttack : MonoBehaviour {
         foreach (var projectile in projectiles)
         {
             projectile.transform.parent = null;
-            projectile.speed = projectile.originalSpeed * -1;
+            projectile.transform.localRotation = Quaternion.Euler(0,0, projectile.transform.rotation.eulerAngles.z + 180);
+            projectile.speed = projectile.originalSpeed * 1;
             projectile.owner = null;
         }
         Destroy(gameObject);

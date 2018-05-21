@@ -152,7 +152,11 @@ public class GhostBossController : Enemy {
         state = State.WalkToCenter;
         yield return new WaitUntil(() => atCenter == true);
         state = State.NoMovement;
-        yield return new WaitForSeconds(2f);
+        ProjectileDeflectorAttack deflector = SpawnDeflector();
+        
+        yield return new WaitForSeconds(6f);
+        deflector.RevertProjectiles();
+        yield return new WaitForSeconds(0.2f);
 
 
         StartCoroutine(Phase1());
