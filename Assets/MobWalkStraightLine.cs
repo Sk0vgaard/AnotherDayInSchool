@@ -20,4 +20,12 @@ public class MobWalkStraightLine : Enemy {
 		if (col.gameObject.GetComponent<PlacyerController>())
 			col.gameObject.GetComponent<PlacyerController>().TakeDamage(100000);
 	}
+
+    public override void Activate(PlacyerController player)
+    {
+    }
+
+    public override void Deactivate(PlacyerController player)
+    {
+    }
 }

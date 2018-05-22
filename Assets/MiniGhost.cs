@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : Enemy {
+public class MiniGhost : Enemy {
 
+    private Transform destination;
 
+    
 
     // Use this for initialization
     new void Start () {
@@ -15,13 +17,6 @@ public class Enemy1 : Enemy {
 	void Update () {
 		
 	}
-
-    public override void Die()
-    {
-        base.Die();
-        isDead = true;
-        Destroy(gameObject);
-    }
 
     public override void Activate(PlacyerController player)
     {

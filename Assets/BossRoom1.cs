@@ -23,7 +23,8 @@ public class BossRoom1 : Room
 
     IEnumerator ChangeLevel()
     {
-        yield return new WaitForSeconds(0.6f);
+        //Waits for the animation to be done.
+        yield return new WaitForSeconds(1.8f);
 
         float fadeTime = GameObject.Find("Room3 (BossRoom)").GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime + 1.8f);

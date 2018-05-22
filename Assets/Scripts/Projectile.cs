@@ -6,6 +6,9 @@ public abstract class Projectile : MonoBehaviour
 {
     public int damage;
     public GameObject owner;
+    public float speed;
+    [HideInInspector]
+    public float originalSpeed;
 
     public void Awake()
     {
@@ -13,13 +16,14 @@ public abstract class Projectile : MonoBehaviour
     }
     // Use this for initialization
     public void Start () {
-		
+        originalSpeed = speed;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	public void Update () {
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+    }
 
     public abstract void Hit(Collider2D collider);
 
