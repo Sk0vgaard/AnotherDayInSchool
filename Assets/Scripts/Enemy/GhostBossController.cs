@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class GhostBossController : Enemy {
+public class GhostBossController : AEnemy {
 
     private enum State
     {
@@ -105,7 +105,7 @@ public class GhostBossController : Enemy {
     {
         GameObject deflectorInstance = Instantiate(deflectorResource, lookAtPlayer.transform.position, Quaternion.identity) as GameObject;
         ProjectileDeflectorAttack deflector = deflectorInstance.GetComponent<ProjectileDeflectorAttack>();
-        deflector.owner = gameObject.GetComponent<Enemy>();
+        deflector.owner = gameObject.GetComponent<AEnemy>();
         deflector.transform.SetParent(transform);
         return deflector;
     }

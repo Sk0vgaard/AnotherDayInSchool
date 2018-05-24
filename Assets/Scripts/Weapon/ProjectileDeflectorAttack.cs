@@ -8,7 +8,7 @@ public class ProjectileDeflectorAttack : MonoBehaviour {
     //private float counter;
     //public float counterStartingTime;
     [HideInInspector]
-    public Enemy owner;
+    public AEnemy owner;
 
     private void Awake()
     {

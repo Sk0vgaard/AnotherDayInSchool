@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : HealthSystem {
+public abstract class AEnemy : HealthSystem {
 
     public PlayerController player;
 

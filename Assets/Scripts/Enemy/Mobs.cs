@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mobs : Enemy {
+public class Mobs : AEnemy {
     public float speed = 3f;
     private GameObject blood;
     

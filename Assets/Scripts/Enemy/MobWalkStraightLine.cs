@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobWalkStraightLine : Enemy {
+public class MobWalkStraightLine : AEnemy {
 	public float speed = 3f;
 
 	// Use this for initialization

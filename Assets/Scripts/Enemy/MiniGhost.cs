@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniGhost : Enemy {
+public class MiniGhost : AEnemy {
 
     private Transform destination;
 

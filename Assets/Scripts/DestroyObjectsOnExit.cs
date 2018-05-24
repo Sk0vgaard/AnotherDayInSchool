@@ -17,11 +17,11 @@ public class DestroyObjectsOnExit : MonoBehaviour {
     {
         Debug.Log(collision.gameObject);
 
-        if (collision.gameObject.GetComponent<Enemy>())
+        if (collision.gameObject.GetComponent<AEnemy>())
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.Die();
-            Destroy(enemy.gameObject);
+            AEnemy aEnemy = collision.gameObject.GetComponent<AEnemy>();
+            aEnemy.Die();
+            Destroy(aEnemy.gameObject);
         }
 
     }

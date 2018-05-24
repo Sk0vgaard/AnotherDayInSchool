@@ -29,7 +29,7 @@ public class EnemySpawn : MonoBehaviour {
 		float randomSpeed = Random.Range (2, 10);
 		enemy.GetComponent<MobWalkStraightLine> ().speed = randomSpeed;
 		GameObject enemy1 = Instantiate (enemy, vector, Quaternion.identity) as GameObject;
-		enemy1.GetComponent<Enemy> ().player = player;
+		enemy1.GetComponent<AEnemy> ().player = player;
 		yield return new WaitForSeconds (0.3f);
 		rdyToSpawn = true;
 	}

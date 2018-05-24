@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class Room : MonoBehaviour {
 
-    public List<Enemy> enemies;
+    public List<AEnemy> enemies;
     public bool roomClearOfEnemies;
 
     public void Awake()
     {
-        enemies = new List<Enemy>();
+        enemies = new List<AEnemy>();
         GetReferenceToEnemiesInRoom();
         
         
@@ -41,9 +41,9 @@ public abstract class Room : MonoBehaviour {
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject child = transform.GetChild(i).gameObject;
-            if (child.GetComponent<Enemy>())
+            if (child.GetComponent<AEnemy>())
             {
-                enemies.Add(child.GetComponent<Enemy>());
+                enemies.Add(child.GetComponent<AEnemy>());
             }
         }
 
@@ -56,10 +56,10 @@ public abstract class Room : MonoBehaviour {
     /// <summary>
     /// Remove enemy from list of enemies. Keeping track of enemies to check if the room is cleared
     /// </summary>
-    /// <param name="enemy"></param>
-    public void EnemyKilled(Enemy enemy)
+    /// <param name="aEnemy"></param>
+    public void EnemyKilled(AEnemy aEnemy)
     {
-        enemies.Remove(enemy);
+        enemies.Remove(aEnemy);
         if (enemies.Count <= 0)
         {
             roomClearOfEnemies = true;

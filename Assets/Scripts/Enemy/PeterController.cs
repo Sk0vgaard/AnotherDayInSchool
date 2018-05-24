@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class PeterController : Enemy
+public class PeterController : AEnemy
 {
     public float moveSpeed;
 
