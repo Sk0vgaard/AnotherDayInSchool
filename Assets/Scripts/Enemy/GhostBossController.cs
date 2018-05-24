@@ -34,47 +34,58 @@ public class GhostBossController : AEnemy {
         deflectorResource = Resources.Load("ProjectileDeflector") as GameObject;
 
         lookAtPlayer = transform.Find("LookAtPlayerObject").GetComponent<LookAtObject>();
-        Debug.Log("DSDDS: " + lookAtPlayer);
     }
 
     // Use this for initialization
     new void Start () {
         base.Start();
-        startingPosition = transform.position;
-        
-
+        startingPosition = transform.position; //Where the boss spawn.
     }
 
     // Update is called once per frame
-    void Update () {
-
+    void Update ()
+    {
         AtCenter();
-        if (isDead)
-        {
-            StopAllCoroutines();
-            state = State.NoMovement;
-        }
+    }
+
+    void FixedUpdate()
+    {
+        HandleBossState();
+    }
+
+    /// <summary>
+    /// The state of the boss.
+    /// </summary>
+    private void HandleBossState()
+    {
         if (player != null)
         {
             switch (state)
             {
-                case State.FollowPlayer: FollowPlayer();
+                case State.FollowPlayer:
+                    FollowPlayer();
                     break;
-                case State.WalkToCenter: MovePlayerToCenter();
+                case State.WalkToCenter:
+                    MoveBossToCenter();
                     break;
                 case State.NoMovement: break;
             }
         }
-        
-	}
+    }
 
+    /// <summary>
+    /// Follow the player.
+    /// </summary>
     void FollowPlayer()
     {
         Vector2 dir = player.transform.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime);
     }   
 
-    void MovePlayerToCenter()
+    /// <summary>
+    /// Moves the boss back to the starting point.
+    /// </summary>
+    void MoveBossToCenter()
     {
         Vector2 dir = startingPosition - transform.position;
         if (!(transform.position.y >= startingPosition.y - MOVE_THRESHHOLD && transform.position.y <= startingPosition.y + MOVE_THRESHHOLD))
@@ -83,6 +94,9 @@ public class GhostBossController : AEnemy {
         }
     }
 
+    /// <summary>
+    /// Figures out if the boss is in center or not.
+    /// </summary>
     void AtCenter()
     {
         if (!(transform.position.y >= startingPosition.y - MOVE_THRESHHOLD && transform.position.y <= startingPosition.y + MOVE_THRESHHOLD))
@@ -95,12 +109,17 @@ public class GhostBossController : AEnemy {
         }
     }
 
+ 
     void SpawnFireBall()
     {
         GameObject fireball = Instantiate(fireBallResource, lookAtPlayer.transform.position, lookAtPlayer.transform.rotation) as GameObject;
         fireball.GetComponent<Projectile>().owner = gameObject;
     }
 
+    /// <summary>
+    /// Makes the shield to deflect the projectiles.
+    /// </summary>
+    /// <returns></returns>
     ProjectileDeflectorAttack SpawnDeflector()
     {
         GameObject deflectorInstance = Instantiate(deflectorResource, lookAtPlayer.transform.position, Quaternion.identity) as GameObject;
@@ -130,9 +149,14 @@ public class GhostBossController : AEnemy {
     {
         base.Die();
         isDead = true;
+        StopAllCoroutines();
+        state = State.NoMovement;
     }
 
-
+    /// <summary>
+    /// Routine for the boss.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Phase1()
     {
         for (int i = 0; i < 3; i++)
