@@ -9,7 +9,7 @@ public class PeterController : AEnemy
     public float moveSpeed;
 
     private Animator anim;
-    private static readonly float COUNTER = 0.42f;
+    private static readonly float ANIMATION_TIME = 0.42f;
     private static readonly float MOVE_THRESHHOLD = 0.3f;
 
 
@@ -144,11 +144,13 @@ public class PeterController : AEnemy
     /// <returns></returns>
     IEnumerator ThrowBook()
     {
-        anim.SetTrigger("attackTrigger");
-        yield return new WaitForSeconds(COUNTER);
         InstantiateBook();
+
+        // Attack animation.
+        anim.SetTrigger("attackTrigger");
+        yield return new WaitForSeconds(ANIMATION_TIME);    // Time it takes to throw the book.
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(false);
-        yield return new WaitForSeconds(COUNTER);
+        yield return new WaitForSeconds(ANIMATION_TIME);    // Time it takes for the hand to reach startpostition.
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(true);
     }
 }
