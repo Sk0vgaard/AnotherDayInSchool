@@ -14,72 +14,56 @@ public class PeterController : AEnemy
 
 
     private GameObject bookBullet;
-    private HealthSystem target;
     private Transform bookSpawnPoint;
 
-    private bool readyToStartCoroutine;
 
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
-        anim = transform.Find("Peter").GetComponent<Animator>();
-        bookBullet = Resources.Load("BookBullet") as GameObject;
+        anim = transform.Find("Peter").GetComponent<Animator>();    //Get reference to peters animationsController.
+        bookBullet = Resources.Load("BookBullet") as GameObject;    //Get reference to peters book.
+        //Get reference where the book should spawn.
         bookSpawnPoint = transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("BookSpawnPoint");
-
     }
 
     new void Start () {
         base.Start();
-        readyToStartCoroutine = true;
-        target = FindObjectOfType<PlayerController>().GetComponent<HealthSystem>();
-	}
+    }
 
     void Update()
     {
-        if (isDead)
+        if (!isDead)
         {
-            return;
-        }
-
-        if (player)
-        {
-            target = player;
-        }
-        else
-        {
-            target = null;
-        }
-
-        /*if (target == null)
-        {
-            PlayerController playerTarget = FindObjectOfType<PlayerController>();
-            if (playerTarget != null)
-            {
-                target = playerTarget.GetComponent<HealthSystem>();
-            }
-        }*/
-        if (target != null)
-        {
-            if (!target.isDead)
-            {
-                if (!(transform.position.y >= target.transform.position.y - MOVE_THRESHHOLD && transform.position.y <= target.transform.position.y + MOVE_THRESHHOLD))
-                {
-                    FollowPlayer();
-                }
-
-                if (readyToStartCoroutine)
-                {
-                    StartCoroutine(PeterRoutine());
-                }
-            }
-            
+            FollowPlayer();
         }
     }
 
-    void FollowPlayer()
+    /// <summary>
+    /// Follow the player.
+    /// </summary>
+    private void FollowPlayer()
     {
-        if (PlayerIsAbove())
+        if (player != null)
+        {
+            if (!player.isDead)
+            {
+                // Space to move in.
+                if (!(transform.position.y >= player.transform.position.y - MOVE_THRESHHOLD && transform.position.y <=
+                      player.transform.position.y + MOVE_THRESHHOLD))
+                {
+                    GoUpOrDown();
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if the payer is above or under the boss.
+    /// </summary>
+    void GoUpOrDown()
+    {
+        if (IsPlayerAbove())
         {
             //go up
             transform.Translate(Vector2.up * Time.deltaTime * moveSpeed);
@@ -88,40 +72,76 @@ public class PeterController : AEnemy
         {
             //go down
             transform.Translate(Vector2.down * Time.deltaTime * moveSpeed);
-
         }
     }
 
-    bool PlayerIsAbove()
+    /// <summary>
+    /// Checks if the player is higher on the y aksis.
+    /// </summary>
+    /// <returns></returns>
+    bool IsPlayerAbove()
     {
-        if (target)
-        {
-            if (target.transform.position.y > transform.position.y)
+            if (player.transform.position.y > transform.position.y)
             {
                 return true;
             }
-            
-        }
-        return false;
+            return false;
     }
 
-    IEnumerator PeterRoutine()
-    {
-        readyToStartCoroutine = false;
-
-        StartCoroutine(ThrowBook());
-        yield return new WaitForSeconds(1.5f);
-
-        readyToStartCoroutine = true;
-    }
 
     void InstantiateBook()
     {
         GameObject bookGameObject = Instantiate(bookBullet, bookSpawnPoint.position, transform.rotation) as GameObject;
+        // Sets the protectile owner to be the boss, so you cannot damage yourself.
         bookGameObject.GetComponent<Projectile>().owner = gameObject;
-
     }
 
+    public override void Die()
+    {
+        anim.SetTrigger("deathTrigger");
+        base.Die();
+        StopAllCoroutines();
+        isDead = true;
+    }
+
+    /// <summary>
+    /// Starts when you go into the room.
+    /// </summary>
+    /// <param name="player"></param>
+    public override void Activate(PlayerController player)
+    {
+        StartCoroutine(PeterRoutine());
+
+        this.player = player;
+    }
+
+    /// <summary>
+    /// When your not in the room or the boss is dead.
+    /// </summary>
+    /// <param name="player"></param>
+    public override void Deactivate(PlayerController player)
+    {
+        this.player = null;
+    }
+
+
+    /// <summary>
+    /// Peters rutine.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator PeterRoutine()
+    {
+        StartCoroutine(ThrowBook());
+        yield return new WaitForSeconds(1.5f);
+
+        // Loop all the way.
+        StartCoroutine(PeterRoutine());
+    }
+
+    /// <summary>
+    /// Animation routine.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ThrowBook()
     {
         anim.SetTrigger("attackTrigger");
@@ -130,22 +150,5 @@ public class PeterController : AEnemy
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(false);
         yield return new WaitForSeconds(COUNTER);
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(true);
-    }
-
-    public override void Die()
-    {
-        anim.SetTrigger("deathTrigger");
-        base.Die();
-        isDead = true;
-    }
-
-    public override void Activate(PlayerController player)
-    {
-        this.player = player;
-    }
-
-    public override void Deactivate(PlayerController player)
-    {
-        this.player = null;
     }
 }
