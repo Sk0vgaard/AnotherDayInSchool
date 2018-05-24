@@ -154,49 +154,13 @@ public class GhostBossController : Enemy {
         state = State.NoMovement;
         ProjectileDeflectorAttack deflector = SpawnDeflector();
         
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(3f);
         deflector.RevertProjectiles();
         yield return new WaitForSeconds(0.2f);
 
 
         StartCoroutine(Phase1());
     }
-
-    IEnumerator Routine1()
-    {
-        state = State.FollowPlayer;
-        yield return new WaitForSeconds(2.5f);
-
-        state = State.NoMovement;
-        //speed = 10;
-
-        StartCoroutine(WalkToCenter());
-    }
-
-    IEnumerator WalkToCenter()
-    {
-        state = State.WalkToCenter;
-        yield return new WaitUntil(() => atCenter == true);
-        state = State.NoMovement;
-        StartCoroutine(ShootFireballs());
-    }
-
-    IEnumerator ShootFireballs()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        for (int i = 0; i < 4; i++)
-        {
-            SpawnFireBall();
-            yield return new WaitForSeconds(0.4f);
-        }
-
-        yield return new WaitForSeconds(0.5f);
-        StartCoroutine(Routine1());
-    }
-
-    
-
 }
 
 

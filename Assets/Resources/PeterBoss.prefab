@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 0
-  maxHealth: 400
+  maxHealth: 500
   isDead: 0
   player: {fileID: 0}
   moveSpeed: 4

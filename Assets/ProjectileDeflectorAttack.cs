@@ -12,7 +12,7 @@ public class ProjectileDeflectorAttack : MonoBehaviour {
 
     private void Awake()
     {
-        projectiles = new List<Projectile>();
+        //projectiles = new List<Projectile>();
         //counter = counterStartingTime;
     }
 
@@ -31,21 +31,28 @@ public class ProjectileDeflectorAttack : MonoBehaviour {
         if (other.GetComponent<Projectile>())
         {
             Projectile projectile = other.GetComponent<Projectile>();
-            projectile.speed = 0;
-            projectile.transform.parent = transform;
-            projectiles.Add(projectile);
+            //projectile.speed = 0;
+            //projectile.transform.parent = transform;
+            //projectiles.Add(projectile);
+
+            projectile.transform.localRotation = Quaternion.Euler(0, 0, projectile.transform.rotation.eulerAngles.z + 180);
+            projectile.owner = null;
         }
     }
 
+
+
+    
     public void RevertProjectiles()
     {
+        /*
         foreach (var projectile in projectiles)
         {
             projectile.transform.parent = null;
             projectile.transform.localRotation = Quaternion.Euler(0,0, projectile.transform.rotation.eulerAngles.z + 180);
             projectile.speed = projectile.originalSpeed * 1;
             projectile.owner = null;
-        }
+        }*/
         Destroy(gameObject);
     }
 }
