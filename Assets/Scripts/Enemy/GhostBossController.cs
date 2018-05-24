@@ -18,7 +18,7 @@ public class GhostBossController : Enemy {
     private bool readyForRoutine, readyForRoutine2;
     private static readonly float MOVE_THRESHHOLD = 0.3f;
     private GameObject fireBallResource;
-    private LookAt lookAtPlayer;
+    private LookAtObject lookAtPlayer;
     private bool deflectBullets;
     private GameObject deflectorResource;
     public bool atCenter;
@@ -33,8 +33,8 @@ public class GhostBossController : Enemy {
         fireBallResource = Resources.Load("Fireball") as GameObject;
         deflectorResource = Resources.Load("ProjectileDeflector") as GameObject;
 
-        lookAtPlayer = transform.Find("LookAtPlayerObject").GetComponent<LookAt>();
-        
+        lookAtPlayer = transform.Find("LookAtPlayerObject").GetComponent<LookAtObject>();
+        Debug.Log("DSDDS: " + lookAtPlayer);
     }
 
     // Use this for initialization
@@ -112,6 +112,7 @@ public class GhostBossController : Enemy {
 
     public override void Activate(PlacyerController player)
     {
+        Debug.Log("Player:" + player);
         this.player = player;
         lookAtPlayer.poi = player.gameObject;
         

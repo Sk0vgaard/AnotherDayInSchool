@@ -16,8 +16,9 @@ public class BossRoom1 : Room
     private GameObject levelImage;
     private string currentLevel;
 
-    public void Awake()
+    public new void Awake()
     {
+        base.Awake();
         currentLevel = "Level 1";
         TextLevel();
     }

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookAt : MonoBehaviour {
-
-    public GameObject poi;
+public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +11,6 @@ public class LookAt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (poi != null)
-        {
-            transform.LookAt(poi.transform);
-
-        }
-    }
+		
+	}
 }
