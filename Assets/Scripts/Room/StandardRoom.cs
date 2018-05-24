@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StandardRoom : Room {
 
-    public override void Enter(PlacyerController player)
+    public override void Enter(PlayerController player)
     {
         ActivateEnemies(player);
     }

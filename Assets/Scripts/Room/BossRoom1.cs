@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BossRoom1 : Room
 {
-    PlacyerController player;
+    PlayerController player;
     public BlockDoorObject blockDoor;
     private bool runOnce = true;
     [SerializeField] private string nextLevel;
@@ -65,7 +65,7 @@ public class BossRoom1 : Room
     }
 
 
-    public override void Enter(PlacyerController player)
+    public override void Enter(PlayerController player)
     {
         this.player = player;
         if (!blockDoor.IsOpen())
@@ -80,7 +80,7 @@ public class BossRoom1 : Room
         this.player = null;
     }
 
-    public void StartFight(PlacyerController player)
+    public void StartFight(PlayerController player)
     {
         ActivateEnemies(player);
         if (blockDoor.IsOpen())

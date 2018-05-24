@@ -15,10 +15,10 @@ public abstract class Room : MonoBehaviour {
         
     }
 
-    public abstract void Enter(PlacyerController player);
+    public abstract void Enter(PlayerController player);
     public abstract void Exit();
 
-    public void ActivateEnemies(PlacyerController player)
+    public void ActivateEnemies(PlayerController player)
     {
         foreach (var enemy in enemies)
         {

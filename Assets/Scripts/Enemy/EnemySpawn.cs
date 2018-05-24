@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour {
 	private GameObject enemy;
-	private PlacyerController player;
+	private PlayerController player;
 	private bool rdyToSpawn = true;
 	public Transform sp1, sp2;
 
 	// Use this for initialization
 	void Start () {
 		enemy = Resources.Load ("WalkingMob") as GameObject;
-		player = FindObjectOfType<PlacyerController> ();
+		player = FindObjectOfType<PlayerController> ();
 		Debug.Log ("Player: " + player);
 	}
 	

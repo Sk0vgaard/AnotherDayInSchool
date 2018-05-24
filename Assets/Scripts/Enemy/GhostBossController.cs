@@ -110,7 +110,7 @@ public class GhostBossController : Enemy {
         return deflector;
     }
 
-    public override void Activate(PlacyerController player)
+    public override void Activate(PlayerController player)
     {
         Debug.Log("Player:" + player);
         this.player = player;
@@ -120,7 +120,7 @@ public class GhostBossController : Enemy {
         
     }
 
-    public override void Deactivate(PlacyerController player)
+    public override void Deactivate(PlayerController player)
     {
         this.player = null;
         lookAtPlayer.poi = null;

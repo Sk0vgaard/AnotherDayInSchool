@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlacyerController : HealthSystem {
+public class PlayerController : HealthSystem {
 
     public Character character;
     public Animator animator;

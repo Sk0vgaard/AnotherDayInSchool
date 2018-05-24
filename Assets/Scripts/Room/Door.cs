@@ -17,7 +17,7 @@ public class Door : MonoBehaviour {
     public exitDir exitDirection;
     public Door exit;
     public bool disabled;
-    private PlacyerController player;
+    private PlayerController player;
     private bool walkPlayerToCenter, walkPlayerAwayFromCenter;
     private Animator canvasAnimator;
 
@@ -85,7 +85,7 @@ public class Door : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.GetComponent<PlacyerController>() != null)
+        if (other.GetComponent<PlayerController>() != null)
         {
             if (disabled)
             {
@@ -93,12 +93,12 @@ public class Door : MonoBehaviour {
                 {
                     canvasAnimator.SetBool("Black", false);
                 }
-                player = other.GetComponent<PlacyerController>();
+                player = other.GetComponent<PlayerController>();
                 walkPlayerAwayFromCenter = true;
             }
             else
             {
-                player = other.GetComponent<PlacyerController>();
+                player = other.GetComponent<PlayerController>();
                 if (room.roomClearOfEnemies)
                 {
                     WalkThroughDoor();
@@ -109,7 +109,7 @@ public class Door : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlacyerController>() != null)
+        if (other.GetComponent<PlayerController>() != null)
         {
             if (disabled)
             {

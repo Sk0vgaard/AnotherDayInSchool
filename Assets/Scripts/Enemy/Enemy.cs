@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : HealthSystem {
 
-    public PlacyerController player;
+    public PlayerController player;
 
     private Room room;
 
@@ -42,8 +42,8 @@ public abstract class Enemy : HealthSystem {
         }
     }
 
-    public abstract void Activate(PlacyerController player);
-    public abstract void Deactivate(PlacyerController player);
+    public abstract void Activate(PlayerController player);
+    public abstract void Deactivate(PlayerController player);
 
 
 }

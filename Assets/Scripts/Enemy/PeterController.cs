@@ -32,7 +32,7 @@ public class PeterController : Enemy
     new void Start () {
         base.Start();
         readyToStartCoroutine = true;
-        target = FindObjectOfType<PlacyerController>().GetComponent<HealthSystem>();
+        target = FindObjectOfType<PlayerController>().GetComponent<HealthSystem>();
 	}
 
     void Update()
@@ -53,7 +53,7 @@ public class PeterController : Enemy
 
         /*if (target == null)
         {
-            PlacyerController playerTarget = FindObjectOfType<PlacyerController>();
+            PlayerController playerTarget = FindObjectOfType<PlayerController>();
             if (playerTarget != null)
             {
                 target = playerTarget.GetComponent<HealthSystem>();
@@ -139,12 +139,12 @@ public class PeterController : Enemy
         isDead = true;
     }
 
-    public override void Activate(PlacyerController player)
+    public override void Activate(PlayerController player)
     {
         this.player = player;
     }
 
-    public override void Deactivate(PlacyerController player)
+    public override void Deactivate(PlayerController player)
     {
         this.player = null;
     }

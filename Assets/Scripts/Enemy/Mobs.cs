@@ -57,16 +57,16 @@ public class Mobs : Enemy {
 
     void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.GetComponent<PlacyerController>())
-        col.gameObject.GetComponent<PlacyerController>().TakeDamage(1);
+        if (col.gameObject.GetComponent<PlayerController>())
+        col.gameObject.GetComponent<PlayerController>().TakeDamage(1);
     }
 
-    public override void Activate(PlacyerController player)
+    public override void Activate(PlayerController player)
     {
         this.player = player;
     }
 
-    public override void Deactivate(PlacyerController player)
+    public override void Deactivate(PlayerController player)
     {
         this.player = null;
     }

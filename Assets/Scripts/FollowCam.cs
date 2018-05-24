@@ -8,7 +8,7 @@ public class FollowCam : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        poi = FindObjectOfType<PlacyerController>().gameObject;
+        poi = FindObjectOfType<PlayerController>().gameObject;
 	}
 	
 	// Update is called once per frame

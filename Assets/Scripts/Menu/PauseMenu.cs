@@ -10,12 +10,12 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
     public GameObject loseScreenUI;
-    private PlacyerController player;
+    private PlayerController player;
 
 
     private void Awake()
     {
-        player = FindObjectOfType<PlacyerController>();
+        player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame

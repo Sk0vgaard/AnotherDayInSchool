@@ -7,7 +7,7 @@ public class TriggerForceWalk : MonoBehaviour {
     public Transform destination;
     public BossRoom1 room;
     private bool movePlayer;
-    private PlacyerController player;
+    private PlayerController player;
 
 	void Start () {
 		
@@ -35,14 +35,14 @@ public class TriggerForceWalk : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.GetComponent<PlacyerController>() != null)
+        if (collider.GetComponent<PlayerController>() != null)
         {
-            PlacyerController player = collider.GetComponent<PlacyerController>();
+            PlayerController player = collider.GetComponent<PlayerController>();
             WalkPlayerTODestination(player);
         }
     }
 
-    void WalkPlayerTODestination(PlacyerController player)
+    void WalkPlayerTODestination(PlayerController player)
     {
         player.disableMovements = true;
         movePlayer = true;
