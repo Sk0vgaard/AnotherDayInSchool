@@ -296,6 +296,7 @@ MonoBehaviour:
   healthAmount: 0
   maxHealth: 1000
   isDead: 0
+  healthBarOffset: 4
   player: {fileID: 0}
   atCenter: 0
   speed: 6

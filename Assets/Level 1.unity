@@ -1940,7 +1940,7 @@ MonoBehaviour:
   room: {fileID: 1227426062}
   exitDirection: 0
   exit: {fileID: 184544349}
-  disabled: 0
+  doorIsDisabled: 0
 --- !u!61 &680556646
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11602,6 +11602,7 @@ MonoBehaviour:
   healthAmount: 0
   maxHealth: 100
   isDead: 0
+  healthBarOffset: 0
   character: {fileID: 11400000, guid: 03874ee313e3abf4e9a29966a5e7bf36, type: 2}
   animator: {fileID: 0}
   disableMovements: 0
@@ -35351,7 +35352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
-  roomClearOfEnemies: 0
+  roomClearOfEnemies: 1
   isPlayerInRoom: 0
   isStartingRoom: 0
 --- !u!4 &1227426063
@@ -36103,6 +36104,11 @@ Prefab:
     - target: {fileID: 4152663798787752, guid: 44f4373396754924f9d3878cae85b284, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114095435196964984, guid: 44f4373396754924f9d3878cae85b284,
+        type: 2}
+      propertyPath: healthBarOffset
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44f4373396754924f9d3878cae85b284, type: 2}

@@ -8,11 +8,12 @@ public abstract class HealthSystem : MonoBehaviour
     public int maxHealth;
     [HideInInspector]
     public bool isDead;
+    public float healthBarOffset;
 
     public void Awake()
     {
         GameObject healthBar = Resources.Load("HealthBar") as GameObject;
-        GameObject instance = Instantiate(healthBar, transform.position, transform.rotation) as GameObject;
+        GameObject instance = Instantiate(healthBar, new Vector3(transform.position.x, transform.position.y + healthBarOffset, transform.position.z), transform.rotation) as GameObject;
         instance.transform.SetParent(gameObject.transform);
         instance.SetActive(true);
         // setting the character one the healthbar since when the healthbar is instansiated it doesnt have any parent

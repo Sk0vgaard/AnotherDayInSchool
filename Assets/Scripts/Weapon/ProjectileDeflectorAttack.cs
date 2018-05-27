@@ -5,54 +5,38 @@ using UnityEngine;
 public class ProjectileDeflectorAttack : MonoBehaviour {
 
     private List<AProjectile> projectiles;
-    //private float counter;
-    //public float counterStartingTime;
     [HideInInspector]
     public AEnemy owner;
 
     private void Awake()
     {
-        //projectiles = new List<AProjectile>();
-        //counter = counterStartingTime;
+        projectiles = new List<AProjectile>();
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<AProjectile>())
         {
+            // Sets the speed of any projectiles hitting the collider to 0, and adds the projectile to the projectiles list. 
             AProjectile projectile = other.GetComponent<AProjectile>();
-            //projectile.speed = 0;
-            //projectile.transform.parent = transform;
-            //projectiles.Add(projectile);
-
-            projectile.transform.localRotation = Quaternion.Euler(0, 0, projectile.transform.rotation.eulerAngles.z + 180);
-            projectile.owner = null;
+            projectile.speed = 0;
+            projectile.transform.parent = transform;
+            projectiles.Add(projectile);
         }
     }
-
-
-
     
+
     public void RevertProjectiles()
     {
-        /*
+        //Rotates all projectiles in the projectiles list by 180 and sets their speed to their original speed.
         foreach (var projectile in projectiles)
         {
             projectile.transform.parent = null;
             projectile.transform.localRotation = Quaternion.Euler(0,0, projectile.transform.rotation.eulerAngles.z + 180);
             projectile.speed = projectile.originalSpeed * 1;
             projectile.owner = null;
-        }*/
+        }
+        // Destory the shield
         Destroy(gameObject);
     }
 }
