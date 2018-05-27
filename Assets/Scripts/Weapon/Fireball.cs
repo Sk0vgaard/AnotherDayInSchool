@@ -14,11 +14,15 @@ public class Fireball : AProjectile {
 	
 	// Update is called once per frame
 	new void Update () {
-        //base.Update();
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
+        // Overrides super.class update. (Uses another rotation).
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// On collides/hit
+    /// </summary>
+    /// <param name="collider"></param>
     public override void Hit(Collider2D collider)
     {
         if (collider.tag == "Terrain")
@@ -27,9 +31,9 @@ public class Fireball : AProjectile {
             Destroy(gameObject);
         }
 
+        // Collides with an object with healthSystem.
         if (collider.GetComponent<HealthSystem>() != null)
         {
-            //player.TakeDamage();
             HealthSystem hp = collider.GetComponent<HealthSystem>();
             if (!(owner == hp.gameObject))
             {

@@ -5,13 +5,13 @@ using UnityEngine;
 public class PistolBullet : AProjectile {
 
 
-    private GameObject smokeOffect;
+    private GameObject smokeEffect;
     
 
     new void Awake()
     {
         base.Awake();
-        smokeOffect = Resources.Load("ProjectileHitEffect") as GameObject;
+        smokeEffect = Resources.Load("ProjectileHitEffect") as GameObject;
     }
 
     // Use this for initialization
@@ -28,18 +28,19 @@ public class PistolBullet : AProjectile {
     {
         if (collider.tag == "Terrain")
         {
-            Instantiate(smokeOffect, transform.position, transform.rotation);
+            // smokeEffect
+            Instantiate(smokeEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 
+        // Collides with an object with healthSystem.
         if (collider.GetComponent<HealthSystem>() != null)
         {
-            //player.TakeDamage();
             HealthSystem hp = collider.GetComponent<HealthSystem>();
             if (!(owner == hp.gameObject))
             {
                 hp.TakeDamage(damage);
-                Instantiate(smokeOffect, transform.position, transform.rotation);
+                Instantiate(smokeEffect, transform.position, transform.rotation);
                 Destroy(gameObject);
             }        
         }
