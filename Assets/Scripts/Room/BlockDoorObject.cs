@@ -8,7 +8,6 @@ public class BlockDoorObject : MonoBehaviour {
     private BoxCollider2D collider;
 
     private bool open;
-    //public bool open { get; }
 
     private void Awake()
     {
@@ -16,11 +15,18 @@ public class BlockDoorObject : MonoBehaviour {
         anim = GetComponent<Animator>();
     }
 
+    /// <summary>
+    /// Open the door.
+    /// </summary>
+    /// <returns></returns>
     public bool IsOpen()
     {
         return open;
     }
 
+    /// <summary>
+    /// Open the door if its cloed.
+    /// </summary>
     public void Open()
     {
         if (!open)
@@ -31,6 +37,9 @@ public class BlockDoorObject : MonoBehaviour {
         }       
     }
 
+    /// <summary>
+    /// Close the door.
+    /// </summary>
     public void Close()
     {
         if (open)
