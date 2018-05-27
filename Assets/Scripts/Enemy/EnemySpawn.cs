@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour {
-	private GameObject enemy;
+	private GameObject enemyResource;
 	private PlayerController player;
 	private bool rdyToSpawn = true;
-	public Transform sp1, sp2;
+    private Room room;
+
+    public Transform sp1, sp2;
+    public float spawnDelay;
 
 	// Use this for initialization
 	void Start () {
-		enemy = Resources.Load ("WalkingMob") as GameObject;
+        if (GetComponent<Room>())
+        {
+            room = GetComponent<Room>();
+        }
+        enemyResource = Resources.Load ("WalkingMob") as GameObject;
 		player = FindObjectOfType<PlayerController> ();
 		Debug.Log ("Player: " + player);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (rdyToSpawn) {
+		if (rdyToSpawn && room.isPlayerInRoom) {
 			StartCoroutine (SpawnMob());
 		}
 	}
@@ -31,10 +38,17 @@ public class EnemySpawn : MonoBehaviour {
 		float randomX = Random.Range (sp1.position.x, sp2.position.x);
 		Vector2 vector = new Vector2 (randomX, sp1.position.y);
 		float randomSpeed = Random.Range (2, 10);
-		enemy.GetComponent<MobWalkStraightLine> ().speed = randomSpeed;
-		GameObject enemy1 = Instantiate (enemy, vector, Quaternion.identity) as GameObject;
-		enemy1.GetComponent<AEnemy> ().player = player;
-		yield return new WaitForSeconds (0.3f);
+		enemyResource.GetComponent<MobWalkStraightLine> ().speed = randomSpeed;
+        //Spawns the enemy
+		GameObject enemeyGameObject = Instantiate (enemyResource, vector, Quaternion.identity) as GameObject;
+        //Sets the enemies parent to the room
+        enemeyGameObject.transform.parent = transform;
+     
+        AEnemy enemy = enemeyGameObject.GetComponent<AEnemy>();
+        enemy.player = player;
+        room.enemies.Add(enemy);
+	
+        yield return new WaitForSeconds (spawnDelay);
 		rdyToSpawn = true;
 	}
 }

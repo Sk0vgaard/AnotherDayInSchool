@@ -73,11 +73,14 @@ public class BossRoom1 : Room
             blockDoor.Open();
 
         }
+        isPlayerInRoom = true;
     }
 
     public override void Exit()
     {
         this.player = null;
+        isPlayerInRoom = false;
+    
     }
 
     public void StartFight(PlayerController player)

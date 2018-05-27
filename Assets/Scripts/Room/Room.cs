@@ -6,13 +6,22 @@ public abstract class Room : MonoBehaviour {
 
     public List<AEnemy> enemies;
     public bool roomClearOfEnemies;
+    public bool isPlayerInRoom;
+    public bool isStartingRoom;
 
     public void Awake()
     {
         enemies = new List<AEnemy>();
         GetReferenceToEnemiesInRoom();
-        
-        
+    }
+
+    public void Start()
+    {
+        if (isStartingRoom)
+        {
+            PlayerController player = FindObjectOfType<PlayerController>();
+            Enter(player);
+        }
     }
 
     public abstract void Enter(PlayerController player);
@@ -23,7 +32,6 @@ public abstract class Room : MonoBehaviour {
         foreach (var enemy in enemies)
         {
             enemy.Activate(player);
-            //enemy.player = player;
         }
     }
 
@@ -32,7 +40,6 @@ public abstract class Room : MonoBehaviour {
         foreach (var enemy in enemies)
         {
             enemy.Deactivate(null);
-            //enemy.player = null;
         }
     }
 

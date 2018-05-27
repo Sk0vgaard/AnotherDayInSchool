@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MobWalkStraightLine : AEnemy {
 	public float speed = 3f;
+    private 
 
 	// Use this for initialization
 	void Start () {
@@ -24,10 +25,12 @@ public class MobWalkStraightLine : AEnemy {
     // Activates the enemy when player walks into the room.
     public override void Activate(PlayerController player)
     {
+        
     }
 
     // Deactivates when player is not in the room.
     public override void Deactivate(PlayerController player)
     {
+        Destroy(gameObject);
     }
 }

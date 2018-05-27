@@ -7,10 +7,13 @@ public class StandardRoom : Room {
     public override void Enter(PlayerController player)
     {
         ActivateEnemies(player);
+        isPlayerInRoom = true; 
     }
 
     public override void Exit()
     {
         DeactivateEnemies();
+        isPlayerInRoom = false;
+
     }
 }
