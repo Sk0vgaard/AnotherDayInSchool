@@ -113,7 +113,7 @@ public class GhostBossController : AEnemy {
     void SpawnFireBall()
     {
         GameObject fireball = Instantiate(fireBallResource, lookAtPlayer.transform.position, lookAtPlayer.transform.rotation) as GameObject;
-        fireball.GetComponent<Projectile>().owner = gameObject;
+        fireball.GetComponent<AProjectile>().owner = gameObject;
     }
 
     /// <summary>

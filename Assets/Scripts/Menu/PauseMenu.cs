@@ -28,9 +28,12 @@ public class PauseMenu : MonoBehaviour
                 LoseScreen();
             }
         }
+        EscPause();
+    }
 
-
-		if (Input.GetKeyDown(KeyCode.Escape))
+    private void EscPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
@@ -41,8 +44,11 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-	}
+    }
 
+    /// <summary>
+    /// Lose Menu
+    /// </summary>
     public void LoseScreen()
     {
         loseScreenUI.SetActive(true);
@@ -55,18 +61,15 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
+    /// <summary>
+    /// Pause the game.
+    /// </summary>
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
-
-    //public void LoadOptions()
-    //{
-    //    Time.timeScale = 1f;
-    //    SceneManager.LoadScene("Options");
-    //}
     
     public void ReloadScene()
     {
@@ -76,7 +79,6 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("Menu");
-
     }
 
 

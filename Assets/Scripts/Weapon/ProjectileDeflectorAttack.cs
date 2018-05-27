@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileDeflectorAttack : MonoBehaviour {
 
-    private List<Projectile> projectiles;
+    private List<AProjectile> projectiles;
     //private float counter;
     //public float counterStartingTime;
     [HideInInspector]
@@ -12,7 +12,7 @@ public class ProjectileDeflectorAttack : MonoBehaviour {
 
     private void Awake()
     {
-        //projectiles = new List<Projectile>();
+        //projectiles = new List<AProjectile>();
         //counter = counterStartingTime;
     }
 
@@ -28,9 +28,9 @@ public class ProjectileDeflectorAttack : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Projectile>())
+        if (other.GetComponent<AProjectile>())
         {
-            Projectile projectile = other.GetComponent<Projectile>();
+            AProjectile projectile = other.GetComponent<AProjectile>();
             //projectile.speed = 0;
             //projectile.transform.parent = transform;
             //projectiles.Add(projectile);

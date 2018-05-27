@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireball : Projectile {
+public class Fireball : AProjectile {
 
-    private GameObject smokeOffect;
+    private GameObject smokeEffect;
 
     new void Awake()
     {
         base.Awake();
-        smokeOffect = Resources.Load("ProjectileHitEffect") as GameObject;
+        smokeEffect = Resources.Load("ProjectileHitEffect") as GameObject;
     }
 	
 	// Update is called once per frame
@@ -23,7 +23,7 @@ public class Fireball : Projectile {
     {
         if (collider.tag == "Terrain")
         {
-            Instantiate(smokeOffect, transform.position, Quaternion.identity);
+            Instantiate(smokeEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -34,7 +34,7 @@ public class Fireball : Projectile {
             if (!(owner == hp.gameObject))
             {
                 hp.TakeDamage(damage);
-                Instantiate(smokeOffect, transform.position, Quaternion.identity);
+                Instantiate(smokeEffect, transform.position, Quaternion.identity);
             }
         }
     }

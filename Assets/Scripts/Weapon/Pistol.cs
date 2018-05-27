@@ -70,7 +70,7 @@ public class Pistol : Weapon {
         fire.Play();
         
         GameObject projectileGameObject = Instantiate(projectile, spawnPoint.position, transform.rotation) as GameObject;
-        Projectile projectileInstance = projectileGameObject.GetComponent<Projectile>();
+        AProjectile projectileInstance = projectileGameObject.GetComponent<AProjectile>();
         if (holder != null)
         {
             projectileInstance.owner = holder.gameObject;

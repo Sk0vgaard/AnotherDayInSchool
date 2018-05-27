@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BookBullet : Projectile {
+public class BookBullet : AProjectile {
     
 
     // Use this for initialization
@@ -15,24 +15,34 @@ public class BookBullet : Projectile {
         base.Update();
 	}
 
+
     public override void Hit(Collider2D collider)
     {
+        // When collides with terrain, destroy the projectile.
         if (collider.tag == "Terrain")
         {
             Destroy(gameObject);
         }
 
+        HitObjectsWithHealthSystem(collider);
+    }
+
+    /// <summary>
+    /// Characters, enemies and so on.
+    /// </summary>
+    /// <param name="collider"></param>
+    private void HitObjectsWithHealthSystem(Collider2D collider)
+    {
         if (collider.GetComponent<HealthSystem>() != null)
         {
-            //player.TakeDamage();
+            // Lose hp.
             HealthSystem hp = collider.GetComponent<HealthSystem>();
             if (!(owner == hp.gameObject))
             {
+                // Take damage and destroy book bullet.
                 hp.TakeDamage(damage);
                 Destroy(gameObject);
             }
-
         }
-
     }
 }

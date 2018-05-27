@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PistolBullet : Projectile {
+public class PistolBullet : AProjectile {
 
 
     private GameObject smokeOffect;

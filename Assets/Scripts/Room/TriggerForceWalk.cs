@@ -13,14 +13,24 @@ public class TriggerForceWalk : MonoBehaviour {
 		
 	}
 	
-	void Update () {
+	void Update ()
+	{
+	    MovePlayerToPosition();
+	}
+
+    /// <summary>
+    /// Moves the player to the wished position/destination.
+    /// </summary>
+    private void MovePlayerToPosition()
+    {
         if (movePlayer)
         {
             if (player != null)
             {
-                if (Vector2.Distance(destination.position,player.transform.position) > 0.1f)
+                if (Vector2.Distance(destination.position, player.transform.position) > 0.1f)
                 {
-                    Vector3 dir = destination.position - new Vector3(player.transform.position.x, player.transform.position.y, 0);
+                    Vector3 dir = destination.position -
+                                  new Vector3(player.transform.position.x, player.transform.position.y, 0);
                     player.transform.Translate(dir.normalized * Time.deltaTime * player.character.moveSpeed * 0.75f);
                 }
                 else
@@ -29,9 +39,9 @@ public class TriggerForceWalk : MonoBehaviour {
                     player.disableMovements = false;
                     room.StartFight(player);
                 }
-            }            
+            }
         }
-	}
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
