@@ -80,6 +80,7 @@ public class Door : MonoBehaviour {
             {
                 walkPlayerAwayFromCenter = false;
                 player.disableMovements = false;
+
                 // Tells the new room that the player has arrived.
                 room.Enter(player);
                 player = null;
@@ -111,10 +112,13 @@ public class Door : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // If door collides with the player.
         if (other.GetComponent<PlayerController>() != null)
         {
+            // Checks if the door is locked.
             if (doorIsDisabled)
             {
+                // If door is locked, play fadeout animation
                 if (canvasAnimator)
                 {
                     canvasAnimator.SetBool("Black", false);
@@ -125,9 +129,12 @@ public class Door : MonoBehaviour {
             }
             else
             {
+                // If the door has a exit. (Not currently).
                 if (exit)
                 {
                     player = other.GetComponent<PlayerController>();
+
+                    // Checks if all enemies id died to lock up the door.
                     if (room.roomClearOfEnemies)
                     {
                         WalkThroughDoor();
@@ -138,17 +145,25 @@ public class Door : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// When going out from the doors collider.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.GetComponent<PlayerController>() != null)
         {
             if (doorIsDisabled)
             {
+                // Open door.
                 doorIsDisabled = false;
             }
         }
     }
 
+    /// <summary>
+    /// Fade in when walking through the door.
+    /// </summary>
     void WalkThroughDoor()
     {
         if (canvasAnimator)
@@ -157,7 +172,7 @@ public class Door : MonoBehaviour {
         }
         walkPlayerToCenter = true;
         player.disableMovements = true;
-        room.Exit();
-        exit.doorIsDisabled = true;
+        room.Exit(); // To deactivate the enemies.
+        exit.doorIsDisabled = true; // Wont be thrown back in pre room.
     }
 }

@@ -12,6 +12,5 @@ public class Character : ScriptableObject {
     public void Initialize()
     {
         Debug.Log("Init Character");
-        //this.animatorController = animatorController;
     }
 }

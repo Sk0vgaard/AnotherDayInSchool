@@ -8,7 +8,6 @@ public class BlockDoorObject : MonoBehaviour {
     private BoxCollider2D collider;
 
     private bool open;
-    //public bool open { get; }
 
     private void Awake()
     {
