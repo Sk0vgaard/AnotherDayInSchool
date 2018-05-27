@@ -121,14 +121,19 @@ public class Door : MonoBehaviour {
                 }
                 player = other.GetComponent<PlayerController>();
                 walkPlayerAwayFromCenter = true;
+                
             }
             else
             {
-                player = other.GetComponent<PlayerController>();
-                if (room.roomClearOfEnemies)
+                if (exit)
                 {
-                    WalkThroughDoor();
+                    player = other.GetComponent<PlayerController>();
+                    if (room.roomClearOfEnemies)
+                    {
+                        WalkThroughDoor();
+                    }
                 }
+                
             }           
         }
     }

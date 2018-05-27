@@ -20,9 +20,6 @@ public abstract class AEnemy : HealthSystem {
 				room = transform.parent.gameObject.GetComponent<Room>(); // Can only be used in rooms atm.
             }
 		}
-       
-
-        
     }
 
 	// Use this for initialization
@@ -48,6 +45,4 @@ public abstract class AEnemy : HealthSystem {
 
     public abstract void Activate(PlayerController player);
     public abstract void Deactivate(PlayerController player);
-
-
 }

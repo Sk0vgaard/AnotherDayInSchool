@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class DestroyObjectsOnExit : MonoBehaviour {
 
+    private Room room;
+
 	// Use this for initialization
 	void Start () {
-		
+        room = transform.parent.GetComponent<Room>();
 	}
 	
 	// Update is called once per frame
@@ -20,6 +22,12 @@ public class DestroyObjectsOnExit : MonoBehaviour {
         if (collision.gameObject.GetComponent<AEnemy>())
         {
             AEnemy aEnemy = collision.gameObject.GetComponent<AEnemy>();
+            if (room.enemies.Contains(aEnemy))
+            {
+                room.enemies.Remove(aEnemy);
+            }
+            room.enemies.Remove(aEnemy);
+
             aEnemy.Die();
             Destroy(aEnemy.gameObject);
         }
