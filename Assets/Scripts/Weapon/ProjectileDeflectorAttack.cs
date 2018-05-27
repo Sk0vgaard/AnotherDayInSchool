@@ -31,10 +31,14 @@ public class ProjectileDeflectorAttack : MonoBehaviour {
         //Rotates all projectiles in the projectiles list by 180 and sets their speed to their original speed.
         foreach (var projectile in projectiles)
         {
-            projectile.transform.parent = null;
-            projectile.transform.localRotation = Quaternion.Euler(0,0, projectile.transform.rotation.eulerAngles.z + 180);
-            projectile.speed = projectile.originalSpeed * 1;
-            projectile.owner = null;
+            if (projectile )
+            {
+                projectile.transform.parent = null;
+                projectile.transform.localRotation = Quaternion.Euler(0, 0, projectile.transform.rotation.eulerAngles.z + 180);
+                projectile.speed = projectile.originalSpeed * 1;
+                projectile.owner = null;
+            }
+            
         }
         // Destory the shield
         Destroy(gameObject);
