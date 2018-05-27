@@ -144,11 +144,11 @@ public class PeterController : AEnemy
     /// <returns></returns>
     IEnumerator ThrowBook()
     {
-        InstantiateBook();
 
         // Attack animation.
         anim.SetTrigger("attackTrigger");
         yield return new WaitForSeconds(ANIMATION_TIME);    // Time it takes to throw the book.
+        InstantiateBook();
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(false);
         yield return new WaitForSeconds(ANIMATION_TIME);    // Time it takes for the hand to reach startpostition.
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(true);
