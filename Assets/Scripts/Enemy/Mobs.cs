@@ -13,29 +13,26 @@ public class Mobs : AEnemy {
     {
         base.Start();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    new void Awake()
+    {
+        base.Awake();
+        blood = Resources.Load("blood") as GameObject;
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        //If player is alive.
 	    if (!isDead && player != null)
 	    {
 	        transform.LookAt(player.transform.position);
-	        transform.Rotate(new Vector3(0, -90, 0), Space.Self);//correcting the original rotation
+	        transform.Rotate(new Vector3(0, -90, 0), Space.Self); //correcting the original rotation
 
 
-	        //move towards the player
-	        if (Vector3.Distance(transform.position, player.transform.position) > 1f)
-	        {
-	            //move if distance from target is greater than 1
+	        // Move towards the player.
 	            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-	        }
-	        else
-	        {
-	            // Do damage to player
-	            
-	        }
-
         }
-        //rotate to look at the player
 
     }
 
@@ -48,24 +45,23 @@ public class Mobs : AEnemy {
 
     }
 
-    new void Awake()
-    {
-        base.Awake();
-        blood = Resources.Load("blood") as GameObject;
-        
-    }
-
+    /// <summary>
+    /// When the mobs hits the player.
+    /// </summary>
+    /// <param name="col"></param>
     void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.GetComponent<PlayerController>())
         col.gameObject.GetComponent<PlayerController>().TakeDamage(1);
     }
 
+    // Activates the enemy when player walks into the room.
     public override void Activate(PlayerController player)
     {
         this.player = player;
     }
 
+    // Deactivates when player is not in the room.
     public override void Deactivate(PlayerController player)
     {
         this.player = null;

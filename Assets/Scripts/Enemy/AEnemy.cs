@@ -11,13 +11,14 @@ public abstract class AEnemy : HealthSystem {
     new public void Awake()
     {
         base.Awake();
+
+        // If enemy has a parent.
 		if (transform.parent != null) {
 			GameObject parent = transform.parent.gameObject;
+            // Get the reference to the parent.
 			if (parent != null) {
-				Debug.Log("Parent: " + parent);
-				Debug.Log(gameObject.name);
-				room = transform.parent.gameObject.GetComponent<Room>();
-			}
+				room = transform.parent.gameObject.GetComponent<Room>(); // Can only be used in rooms atm.
+            }
 		}
        
 
@@ -34,6 +35,9 @@ public abstract class AEnemy : HealthSystem {
 	    	
 	}
 
+    /// <summary>
+    /// Tells the room if enemy is dead.
+    /// </summary>
     public override void Die()
     {
         if (room != null)

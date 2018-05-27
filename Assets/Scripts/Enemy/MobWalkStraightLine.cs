@@ -21,10 +21,12 @@ public class MobWalkStraightLine : AEnemy {
 			col.gameObject.GetComponent<PlayerController>().TakeDamage(100000);
 	}
 
+    // Activates the enemy when player walks into the room.
     public override void Activate(PlayerController player)
     {
     }
 
+    // Deactivates when player is not in the room.
     public override void Deactivate(PlayerController player)
     {
     }

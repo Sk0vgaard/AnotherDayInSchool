@@ -22,6 +22,10 @@ public class EnemySpawn : MonoBehaviour {
 		}
 	}
 
+    /// <summary>
+    /// Spawn the mobs.
+    /// </summary>
+    /// <returns></returns>
 	IEnumerator SpawnMob() {
 		rdyToSpawn = false;
 		float randomX = Random.Range (sp1.position.x, sp2.position.x);
