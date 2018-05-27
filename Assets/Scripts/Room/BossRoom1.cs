@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BossRoom1 : Room
+public class BossRoom1 : ARoom
 {
     PlayerController player;
     public BlockDoorObject blockDoor;

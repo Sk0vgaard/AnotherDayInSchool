@@ -13,7 +13,7 @@ public enum exitDir
 public class Door : MonoBehaviour {
 
 
-    public Room room;
+    public ARoom room;
     public exitDir exitDirection;
     public Door exit;
     public bool doorIsDisabled;

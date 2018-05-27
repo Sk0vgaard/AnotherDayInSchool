@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Room : MonoBehaviour {
+public abstract class ARoom : MonoBehaviour {
 
     public List<AEnemy> enemies;
     public bool roomClearOfEnemies;

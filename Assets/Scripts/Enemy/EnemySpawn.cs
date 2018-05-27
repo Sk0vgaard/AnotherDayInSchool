@@ -6,16 +6,16 @@ public class EnemySpawn : MonoBehaviour {
 	private GameObject enemyResource;
 	private PlayerController player;
 	private bool rdyToSpawn = true;
-    private Room room;
+    private ARoom room;
 
     public Transform sp1, sp2;
     public float spawnDelay;
 
 	// Use this for initialization
 	void Start () {
-        if (GetComponent<Room>())
+        if (GetComponent<ARoom>())
         {
-            room = GetComponent<Room>();
+            room = GetComponent<ARoom>();
         }
         enemyResource = Resources.Load ("WalkingMob") as GameObject;
 		player = FindObjectOfType<PlayerController> ();

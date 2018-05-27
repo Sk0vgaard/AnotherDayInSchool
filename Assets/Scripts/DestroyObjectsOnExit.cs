@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DestroyObjectsOnExit : MonoBehaviour {
 
-    private Room room;
+    private ARoom room;
 
 	// Use this for initialization
 	void Start () {
-        room = transform.parent.GetComponent<Room>();
+        room = transform.parent.GetComponent<ARoom>();
 	}
 	
 	// Update is called once per frame

@@ -6,7 +6,7 @@ public abstract class AEnemy : HealthSystem {
 
     public PlayerController player;
 
-    private Room room;
+    private ARoom room;
 
     new public void Awake()
     {
@@ -17,7 +17,7 @@ public abstract class AEnemy : HealthSystem {
 			GameObject parent = transform.parent.gameObject;
             // Get the reference to the parent.
 			if (parent != null) {
-				room = transform.parent.gameObject.GetComponent<Room>(); // Can only be used in rooms atm.
+				room = transform.parent.gameObject.GetComponent<ARoom>(); // Can only be used in rooms atm.
             }
 		}
     }

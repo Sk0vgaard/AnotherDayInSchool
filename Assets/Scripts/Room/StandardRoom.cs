@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StandardRoom : Room {
+public class StandardRoom : ARoom {
 
     public override void Enter(PlayerController player)
     {
