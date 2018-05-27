@@ -16,7 +16,7 @@ public class Door : MonoBehaviour {
     public Room room;
     public exitDir exitDirection;
     public Door exit;
-    public bool disabled;
+    public bool doorIsDisabled;
     private PlayerController player;
     private bool walkPlayerToCenter, walkPlayerAwayFromCenter;
     private Animator canvasAnimator;
@@ -24,20 +24,74 @@ public class Door : MonoBehaviour {
 
     private void Awake()
     {
+        InitializeFadeEffect();
+    }
+
+    private void InitializeFadeEffect()
+    {
         GameObject canvas = FindObjectOfType<PauseMenu>().gameObject;
         if (canvas != null)
         {
             canvasAnimator = canvas.transform.Find("FadeToBlackImage").GetComponent<Animator>();
         }
     }
-
-    // Use this for initialization
-    void  Start () {
-		
-	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
+	    WalkIntoTheDoor();
+
+	    WalkFromTheDoor();
+	}
+
+    /// <summary>
+    /// When the player walks from the door (2-3 steps when arriving to a new room).
+    /// </summary>
+    private void WalkFromTheDoor()
+    {
+        if (walkPlayerAwayFromCenter)
+        {
+            Vector2 playerPos = player.transform.position;
+
+            // Tells the character what direction to move from the door.
+            if (Vector2.Distance(playerPos, transform.position) < 2)
+            {
+                Vector2 direction = Vector2.zero;
+                switch (exitDirection)
+                {
+                    case exitDir.up:
+                        direction = Vector2.up;
+                        break;
+                    case exitDir.left:
+                        direction = Vector2.left;
+                        break;
+                    case exitDir.down:
+                        direction = Vector2.down;
+                        break;
+                    case exitDir.right:
+                        direction = Vector2.right;
+                        break;
+                }
+                // Moves the player to the wished direction.
+                player.transform.Translate(direction * Time.deltaTime * player.character.moveSpeed * 0.75f);
+            }
+            // When the player done walking through the door, make the player able to move agian.
+            else
+            {
+                walkPlayerAwayFromCenter = false;
+                player.disableMovements = false;
+                // Tells the new room that the player has arrived.
+                room.Enter(player);
+                player = null;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Make the player walk deeper into the door, but with slower movespeed.
+    /// </summary>
+    private void WalkIntoTheDoor()
+    {
         if (walkPlayerToCenter)
         {
             Vector2 playerPos = player.transform.position;
@@ -50,44 +104,16 @@ public class Door : MonoBehaviour {
             {
                 player.transform.position = exit.transform.position;
                 walkPlayerToCenter = false;
-                //player.disableMovements = false;
                 player = null;
             }
-        }
-
-        if (walkPlayerAwayFromCenter)
-        {
-            Vector2 playerPos = player.transform.position;
-            if (Vector2.Distance(playerPos, transform.position) < 2)
-            {
-                Vector2 direction = Vector2.zero;
-                switch (exitDirection)
-                {
-                    case exitDir.up: direction = Vector2.up; break;
-                    case exitDir.left: direction = Vector2.left; break;
-                    case exitDir.down: direction = Vector2.down; break;
-                    case exitDir.right: direction = Vector2.right; break;
-                }
-                player.transform.Translate(direction * Time.deltaTime * player.character.moveSpeed * 0.75f);
-            }
-            else
-            {
-                walkPlayerAwayFromCenter = false;
-                player.disableMovements = false;
-                room.Enter(player);
-                player = null;
-
-            }
-
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.GetComponent<PlayerController>() != null)
         {
-            if (disabled)
+            if (doorIsDisabled)
             {
                 if (canvasAnimator)
                 {
@@ -111,9 +137,9 @@ public class Door : MonoBehaviour {
     {
         if (other.GetComponent<PlayerController>() != null)
         {
-            if (disabled)
+            if (doorIsDisabled)
             {
-                disabled = false;
+                doorIsDisabled = false;
             }
         }
     }
@@ -127,6 +153,6 @@ public class Door : MonoBehaviour {
         walkPlayerToCenter = true;
         player.disableMovements = true;
         room.Exit();
-        exit.disabled = true;
+        exit.doorIsDisabled = true;
     }
 }

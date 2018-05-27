@@ -35,8 +35,7 @@ public class BossRoom1 : Room
 
     IEnumerator ChangeLevel()
     {
-
-        //Waits for the animation to be done.
+        //Waits for the death animation to be done.
         yield return new WaitForSeconds(1.8f);
 
         float fadeTime = GameObject.Find("Room3 (BossRoom)").GetComponent<Fading>().BeginFade(1);
@@ -44,12 +43,18 @@ public class BossRoom1 : Room
         SceneManager.LoadScene(nextLevel);
     }
 
+    /// <summary>
+    /// GameOver (To be implemented).
+    /// </summary>
     public void GameOver()
     {
         levelText.text = "Game Over \n Better luck in " + currentLevel + " next time...";
         levelImage.SetActive(true);
     }
 
+    /// <summary>
+    /// Sets the text level.
+    /// </summary>
     private void TextLevel()
     {
         levelImage = GameObject.Find("LevelImage");
@@ -64,14 +69,17 @@ public class BossRoom1 : Room
         levelImage.SetActive(false);
     }
 
-
+    /// <summary>
+    /// When player enters the room.
+    /// </summary>
+    /// <param name="player"></param>
     public override void Enter(PlayerController player)
     {
         this.player = player;
+        // The player shouldnt be able to go out of the room.
         if (!blockDoor.IsOpen())
         {
             blockDoor.Open();
-
         }
     }
 
@@ -80,9 +88,15 @@ public class BossRoom1 : Room
         this.player = null;
     }
 
+    /// <summary>
+    /// When the fight agianst the boss starts, lock the door.
+    /// </summary>
+    /// <param name="player"></param>
     public void StartFight(PlayerController player)
     {
+        //Activate boss.
         ActivateEnemies(player);
+
         if (blockDoor.IsOpen())
         {
             blockDoor.Close();
