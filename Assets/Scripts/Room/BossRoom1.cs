@@ -44,15 +44,6 @@ public class BossRoom1 : ARoom
     }
 
     /// <summary>
-    /// GameOver (To be implemented).
-    /// </summary>
-    public void GameOver()
-    {
-        levelText.text = "Game Over \n Better luck in " + currentLevel + " next time...";
-        levelImage.SetActive(true);
-    }
-
-    /// <summary>
     /// Sets the text level.
     /// </summary>
     private void TextLevel()

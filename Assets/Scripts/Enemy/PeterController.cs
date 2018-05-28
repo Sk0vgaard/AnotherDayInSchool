@@ -10,7 +10,9 @@ public class PeterController : AEnemy
 
     private Animator anim;
     private static readonly float ANIMATION_TIME = 0.42f;
-    private static readonly float MOVE_THRESHHOLD = 0.3f;
+    private static readonly float MOVE_THRESHHOLD = 0.1f;
+    private static readonly float BOSS_CENTER_OFFSET = -0.7f;
+
 
 
     private GameObject bookBullet;
@@ -49,7 +51,7 @@ public class PeterController : AEnemy
             if (!player.isDead)
             {
                 // Space to move in.
-                if (!(transform.position.y >= player.transform.position.y - MOVE_THRESHHOLD && transform.position.y <=
+                if (!(transform.position.y - BOSS_CENTER_OFFSET >= player.transform.position.y - MOVE_THRESHHOLD && transform.position.y - BOSS_CENTER_OFFSET <=
                       player.transform.position.y + MOVE_THRESHHOLD))
                 {
                     GoUpOrDown();
@@ -81,7 +83,7 @@ public class PeterController : AEnemy
     /// <returns></returns>
     bool IsPlayerAbove()
     {
-            if (player.transform.position.y > transform.position.y)
+            if (player.transform.position.y > transform.position.y - BOSS_CENTER_OFFSET)
             {
                 return true;
             }
