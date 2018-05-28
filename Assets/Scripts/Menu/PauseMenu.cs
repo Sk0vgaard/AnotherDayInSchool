@@ -10,12 +10,15 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
     public GameObject loseScreenUI;
+    public GameObject winScreenUI;
+
     private PlayerController player;
 
 
     private void Awake()
     {
         player = FindObjectOfType<PlayerController>();
+        Resume();
     }
 
     // Update is called once per frame
@@ -54,6 +57,14 @@ public class PauseMenu : MonoBehaviour
         loseScreenUI.SetActive(true);
     }
 
+    /// <summary>
+    /// Win screen. Used when the player defeats the final boss
+    /// </summary>
+    public void WinScreen()
+    {
+        StartCoroutine(ShowWinScreenAfterDelay());
+    }
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -85,5 +96,13 @@ public class PauseMenu : MonoBehaviour
     public void QuitMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    IEnumerator ShowWinScreenAfterDelay()
+    {
+        yield return new WaitForSeconds(1);
+        winScreenUI.SetActive(true);
+        player.disableMovements = true;
+
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class AProjectile : MonoBehaviour
 {
     public int damage;
-    public GameObject owner;
+    public HealthSystem owner;
     public float speed;
     [HideInInspector]
     public float originalSpeed;
@@ -23,6 +23,17 @@ public abstract class AProjectile : MonoBehaviour
 	// Update is called once per frame
 	public void Update () {
 
+        if (!owner)
+        {    
+            Destroy(gameObject);
+        }
+        else
+        {
+            if (owner.isDead)
+            {
+                Destroy(gameObject);
+            }
+        }
         // Makes the projectile move.
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }

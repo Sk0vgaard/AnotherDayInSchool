@@ -37,7 +37,7 @@ public class PistolBullet : AProjectile {
         if (collider.GetComponent<HealthSystem>() != null)
         {
             HealthSystem hp = collider.GetComponent<HealthSystem>();
-            if (!(owner == hp.gameObject))
+            if (!(owner == hp))
             {
                 hp.TakeDamage(damage);
                 Instantiate(smokeEffect, transform.position, transform.rotation);

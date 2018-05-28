@@ -113,7 +113,7 @@ public class GhostBossController : AEnemy {
     void SpawnFireBall()
     {
         GameObject fireball = Instantiate(fireBallResource, lookAtPlayer.transform.position, lookAtPlayer.transform.rotation) as GameObject;
-        fireball.GetComponent<AProjectile>().owner = gameObject;
+        fireball.GetComponent<AProjectile>().owner = gameObject.GetComponent<HealthSystem>();
     }
 
     /// <summary>
@@ -148,8 +148,8 @@ public class GhostBossController : AEnemy {
     public override void Die()
     {
         base.Die();
-        isDead = true;
         StopAllCoroutines();
+        isDead = true;
         state = State.NoMovement;
     }
 
@@ -178,6 +178,7 @@ public class GhostBossController : AEnemy {
         yield return new WaitUntil(() => atCenter == true);
         state = State.NoMovement;
         ProjectileDeflectorAttack deflector = SpawnDeflector();
+        deflector.owner = GetComponent<AEnemy>();
         
         yield return new WaitForSeconds(3f);
         deflector.RevertProjectiles();

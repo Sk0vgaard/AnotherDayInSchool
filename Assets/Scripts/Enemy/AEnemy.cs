@@ -33,13 +33,14 @@ public abstract class AEnemy : HealthSystem {
 	}
 
     /// <summary>
-    /// Tells the room if enemy is dead.
+    /// Tells the room that the enemy is dead.
     /// </summary>
     public override void Die()
     {
         if (room != null)
         {
-            room.EnemyKilled(this);
+            Debug.Log(gameObject + " is dead");
+            room.EnemyKilled(GetComponent<AEnemy>());
         }
     }
 

@@ -14,6 +14,17 @@ public class Fireball : AProjectile {
 	
 	// Update is called once per frame
 	new void Update () {
+        if (!owner)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            if (owner.isDead)
+            {
+                Destroy(gameObject);
+            }
+        }
 
         // Overrides super.class update. (Uses another rotation).
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -35,7 +46,7 @@ public class Fireball : AProjectile {
         if (collider.GetComponent<HealthSystem>() != null)
         {
             HealthSystem hp = collider.GetComponent<HealthSystem>();
-            if (!(owner == hp.gameObject))
+            if (!(owner == hp))
             {
                 hp.TakeDamage(damage);
                 Instantiate(smokeEffect, transform.position, Quaternion.identity);

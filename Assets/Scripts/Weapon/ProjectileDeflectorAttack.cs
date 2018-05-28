@@ -36,7 +36,7 @@ public class ProjectileDeflectorAttack : MonoBehaviour {
                 projectile.transform.parent = null;
                 projectile.transform.localRotation = Quaternion.Euler(0, 0, projectile.transform.rotation.eulerAngles.z + 180);
                 projectile.speed = projectile.originalSpeed * 1;
-                projectile.owner = null;
+                projectile.owner = owner;
             }
             
         }

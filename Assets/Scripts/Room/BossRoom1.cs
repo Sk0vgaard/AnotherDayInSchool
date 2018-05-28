@@ -25,7 +25,7 @@ public class BossRoom1 : ARoom
 
     public void Update()
     {
-        if (roomClearOfEnemies)
+        if (roomClearOfEnemies && runOnce)
         {
             runOnce = false;
             // Fadeout

@@ -66,7 +66,12 @@ public abstract class ARoom : MonoBehaviour {
     /// <param name="aEnemy"></param>
     public void EnemyKilled(AEnemy aEnemy)
     {
-        enemies.Remove(aEnemy);
+        int sizeb = enemies.Count;
+
+        bool x = enemies.Remove(aEnemy);
+
+        Debug.Log("Size: " + enemies.Count + " before: " + sizeb);
+
         if (enemies.Count <= 0)
         {
             roomClearOfEnemies = true;

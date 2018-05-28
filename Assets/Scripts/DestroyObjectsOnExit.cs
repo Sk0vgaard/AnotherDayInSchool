@@ -17,7 +17,6 @@ public class DestroyObjectsOnExit : MonoBehaviour {
 	}
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
 
         if (collision.gameObject.GetComponent<AEnemy>())
         {

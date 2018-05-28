@@ -95,7 +95,7 @@ public class PeterController : AEnemy
     {
         GameObject bookGameObject = Instantiate(bookBullet, bookSpawnPoint.position, transform.rotation) as GameObject;
         // Sets the protectile owner to be the boss, so you cannot damage yourself.
-        bookGameObject.GetComponent<AProjectile>().owner = gameObject;
+        bookGameObject.GetComponent<AProjectile>().owner = gameObject.GetComponent<HealthSystem>();
     }
 
     public override void Die()

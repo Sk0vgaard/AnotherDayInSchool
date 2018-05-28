@@ -90,7 +90,7 @@ public class Pistol : Weapon {
         // The character who holds the gun.
         if (holder != null)
         {
-            projectileInstance.owner = holder.gameObject;
+            projectileInstance.owner = holder;
         }
     }
 

@@ -19,7 +19,6 @@ public class EnemySpawn : MonoBehaviour {
         }
         enemyResource = Resources.Load ("WalkingMob") as GameObject;
 		player = FindObjectOfType<PlayerController> ();
-		Debug.Log ("Player: " + player);
 	}
 	
 	// Update is called once per frame

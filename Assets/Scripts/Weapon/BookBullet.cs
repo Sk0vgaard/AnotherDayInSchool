@@ -37,7 +37,7 @@ public class BookBullet : AProjectile {
         {
             // Lose hp.
             HealthSystem hp = collider.GetComponent<HealthSystem>();
-            if (!(owner == hp.gameObject))
+            if (!(owner == hp))
             {
                 // Take damage and destroy book bullet.
                 hp.TakeDamage(damage);
