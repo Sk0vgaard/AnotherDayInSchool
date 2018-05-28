@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mobs : AEnemy {
     public float speed = 3f;
     private GameObject blood;
-    
+    private GameObject spriteGameObject;
 
 
     // Use this for initialization
@@ -18,6 +18,7 @@ public class Mobs : AEnemy {
     {
         base.Awake();
         blood = Resources.Load("blood") as GameObject;
+        spriteGameObject = transform.Find("Sprite").gameObject;
 
     }
 
@@ -26,12 +27,13 @@ public class Mobs : AEnemy {
         //If player is alive.
 	    if (!isDead && player != null)
 	    {
-	        transform.LookAt(player.transform.position);
-	        transform.Rotate(new Vector3(0, -90, 0), Space.Self); //correcting the original rotation
+            spriteGameObject.transform.LookAt(player.transform.position);
+            spriteGameObject.transform.Rotate(new Vector3(0, -90, 0), Space.Self); //correcting the original rotation
 
 
-	        // Move towards the player.
-	            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+            // Move towards the player.
+            Vector3 dir = player.transform.position - transform.position;
+            transform.Translate(dir.normalized * speed * Time.deltaTime);
         }
 
     }
