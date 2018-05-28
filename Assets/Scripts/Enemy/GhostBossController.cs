@@ -21,6 +21,8 @@ public class GhostBossController : AEnemy {
     private LookAtObject lookAtPlayer;
     private bool deflectBullets;
     private GameObject deflectorResource;
+    private Animator anim;
+
     public bool atCenter;
 
     public float speed;
@@ -29,6 +31,7 @@ public class GhostBossController : AEnemy {
     new void Awake()
     {
         base.Awake();
+        anim = GetComponent<Animator>();
         readyForRoutine = true;
         fireBallResource = Resources.Load("Fireball") as GameObject;
         deflectorResource = Resources.Load("ProjectileDeflector") as GameObject;
@@ -148,6 +151,8 @@ public class GhostBossController : AEnemy {
     public override void Die()
     {
         base.Die();
+        anim.SetTrigger("deathTrigger");
+
         StopAllCoroutines();
         isDead = true;
         state = State.NoMovement;
