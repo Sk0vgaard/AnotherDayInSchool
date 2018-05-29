@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BossRoom1 : ARoom
+public class BossRoom1 : ABossRoom
 {
     PlayerController player;
     public BlockDoorObject blockDoor;
-    private bool runOnce = true;
 
-	private AudioSource aSource;
+    private bool runOnce = true;
 
     public new void Awake()
     {
@@ -35,6 +34,7 @@ public class BossRoom1 : ARoom
     /// <param name="player"></param>
     public override void Enter(PlayerController player)
     {
+        base.Enter(player);
         this.player = player;
         // The player shouldnt be able to go out of the room.
         if (!blockDoor.IsOpen())
@@ -42,14 +42,14 @@ public class BossRoom1 : ARoom
             blockDoor.Open();
         }
         isPlayerInRoom = true;
-		this.aSource = GetComponent<AudioSource>();
-		this.aSource.Play ();
-
+        
 
     }
 
     public override void Exit()
     {
+        base.Exit();
+
         this.player = null;
         isPlayerInRoom = false;
     

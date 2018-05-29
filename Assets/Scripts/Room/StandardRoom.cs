@@ -8,7 +8,6 @@ public class StandardRoom : ARoom {
     {
         ActivateEnemies(player);
         isPlayerInRoom = true;
-		GetComponent<AudioSource> ().Play ();
 
     }
 
@@ -16,6 +15,5 @@ public class StandardRoom : ARoom {
     {
         DeactivateEnemies();
         isPlayerInRoom = false;
-		GetComponent<AudioSource> ().Stop ();
     }
 }

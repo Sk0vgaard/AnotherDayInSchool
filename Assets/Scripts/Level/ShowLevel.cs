@@ -8,12 +8,14 @@ public class ShowLevel : MonoBehaviour {
     public float levelStartDelay = 0.1f;
     private Text levelText;
     private GameObject levelImage;
+    private AudioSource audioSource;
+    public AudioClip music;
     public string currentLevel;
+
 
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -24,6 +26,8 @@ public class ShowLevel : MonoBehaviour {
 
     void Awake()
     {
+        audioSource = GameObject.Find("BGM").GetComponent<AudioSource>();
+       
         TextLevel();
     }
 
@@ -37,6 +41,10 @@ public class ShowLevel : MonoBehaviour {
         levelText.text = currentLevel;
         levelImage.SetActive(true);
         Invoke("HideLevelImage", levelStartDelay);
+
+        audioSource.clip = music;
+        audioSource.Play();
+
     }
 
     private void HideLevelImage()
