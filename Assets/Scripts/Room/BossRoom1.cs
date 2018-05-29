@@ -9,19 +9,12 @@ public class BossRoom1 : ARoom
     PlayerController player;
     public BlockDoorObject blockDoor;
     private bool runOnce = true;
-    [SerializeField] private string nextLevel;
 
-    public float levelStartDelay = 0.1f;
-    private Text levelText;
-    private GameObject levelImage;
-    private string currentLevel;
 	private AudioSource aSource;
 
     public new void Awake()
     {
         base.Awake();
-        currentLevel = "Level 1";
-        TextLevel();
 
     }
 
@@ -30,37 +23,11 @@ public class BossRoom1 : ARoom
         if (roomClearOfEnemies && runOnce)
         {
             runOnce = false;
-            // Fadeout
-            StartCoroutine(ChangeLevel());
+            FindObjectOfType<NextLevel>().NewLevel();
         }
     }
 
-    IEnumerator ChangeLevel()
-    {
-        //Waits for the death animation to be done.
-        yield return new WaitForSeconds(1.8f);
-
-        float fadeTime = GameObject.Find("Room3 (BossRoom)").GetComponent<Fading>().BeginFade(1);
-        yield return new WaitForSeconds(fadeTime + 1.8f);
-        SceneManager.LoadScene(nextLevel);
-    }
-
-    /// <summary>
-    /// Sets the text level.
-    /// </summary>
-    private void TextLevel()
-    {
-        levelImage = GameObject.Find("LevelImage");
-        levelText = GameObject.Find("LevelText").GetComponent<Text>();
-        levelText.text = currentLevel;
-        levelImage.SetActive(true);
-        Invoke("HideLevelImage", levelStartDelay);
-    }
-
-    private void HideLevelImage()
-    {
-        levelImage.SetActive(false);
-    }
+    
 
     /// <summary>
     /// When player enters the room.
