@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	public void PlayGame()
+    private Animator anim;
+
+    private void Awake()
     {
+        anim = GetComponent<Animator>();
+        Time.timeScale = 1;
+    }
+
+    public void PlayGame()
+    {
+
         SceneManager.LoadScene("Level 1");
     }
 
