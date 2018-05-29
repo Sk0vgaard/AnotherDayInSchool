@@ -138,7 +138,7 @@ public class GhostBossController : AEnemy {
         this.player = player;
         lookAtPlayer.poi = player.gameObject;
         
-        StartCoroutine(Phase1());
+        StartCoroutine(BossRoutine());
         
     }
 
@@ -162,7 +162,7 @@ public class GhostBossController : AEnemy {
     /// Routine for the boss.
     /// </summary>
     /// <returns></returns>
-    IEnumerator Phase1()
+    IEnumerator BossRoutine()
     {
         for (int i = 0; i < 3; i++)
         {
@@ -189,8 +189,7 @@ public class GhostBossController : AEnemy {
         deflector.RevertProjectiles();
         yield return new WaitForSeconds(0.2f);
 
-
-        StartCoroutine(Phase1());
+        StartCoroutine(BossRoutine());
     }
 }
 
