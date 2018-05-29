@@ -11,6 +11,7 @@ public class BossRoom2 : ARoom {
     {
         ActivateEnemies(player);
         isPlayerInRoom = true;
+		GetComponent<AudioSource> ().Play ();
     }
 
     public override void Exit()
