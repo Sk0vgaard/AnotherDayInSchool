@@ -46,12 +46,12 @@ public class SettingMenu : MonoBehaviour {
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-	public void SetVolume(float volume)
-    {
-        Debug.Log(volume);
-
-        audioMixer.SetFloat("volume", volume);
-    }
+	//public void SetVolume(float volume)
+    //{
+    //    Debug.Log(volume);
+    //
+    //    audioMixer.SetFloat("volume", volume);
+    //}
 
     public void SetQuality (int qualityIndex)
     {
