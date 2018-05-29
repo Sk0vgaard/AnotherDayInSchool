@@ -15,12 +15,14 @@ public class BossRoom1 : ARoom
     private Text levelText;
     private GameObject levelImage;
     private string currentLevel;
+	private AudioSource aSource;
 
     public new void Awake()
     {
         base.Awake();
         currentLevel = "Level 1";
         TextLevel();
+
     }
 
     public void Update()
@@ -73,6 +75,10 @@ public class BossRoom1 : ARoom
             blockDoor.Open();
         }
         isPlayerInRoom = true;
+		this.aSource = GetComponent<AudioSource>();
+		this.aSource.Play ();
+
+
     }
 
     public override void Exit()
@@ -94,6 +100,7 @@ public class BossRoom1 : ARoom
         if (blockDoor.IsOpen())
         {
             blockDoor.Close();
+
         }
     }
 
