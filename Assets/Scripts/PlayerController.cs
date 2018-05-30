@@ -43,9 +43,11 @@ public class PlayerController : HealthSystem {
 	
 	void Update ()
 	{
-	    PlayerAnimator();
-
-	}
+        if (!isDead)
+        {
+            PlayerAnimator();
+        }
+    }
 
     void FixedUpdate()
     {
