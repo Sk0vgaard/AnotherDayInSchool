@@ -35245,7 +35245,7 @@ GameObject:
   - component: {fileID: 1227426063}
   - component: {fileID: 1227426062}
   m_Layer: 0
-  m_Name: MobRoom (Room2)
+  m_Name: Room2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35633,7 +35633,7 @@ GameObject:
   - component: {fileID: 1537145062}
   - component: {fileID: 1537145064}
   m_Layer: 0
-  m_Name: BossRoom (Room3)
+  m_Name: Room3 (BossRoom)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36300,7 +36300,7 @@ GameObject:
   - component: {fileID: 1852834197}
   - component: {fileID: 1852834199}
   m_Layer: 0
-  m_Name: Spawn Area (Room1)
+  m_Name: Room1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
