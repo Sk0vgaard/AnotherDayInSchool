@@ -40962,6 +40962,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 466b2c5a3e5d415697f26e7e957aa6fc6d19d419
 --- !u!1001 &1405485415
 Prefab:
   m_ObjectHideFlags: 0
@@ -41068,6 +41073,10 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+>>>>>>> parent of 6c3837f... Merge branch 'development' of https://github.com/Sk0vgaard/AnotherDayInSchool into development
+=======
+>>>>>>> 466b2c5a3e5d415697f26e7e957aa6fc6d19d419
 --- !u!1 &1511237827
 GameObject:
   m_ObjectHideFlags: 0
