@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -35354,7 +35354,7 @@ GameObject:
   - component: {fileID: 1227426063}
   - component: {fileID: 1227426062}
   m_Layer: 0
-  m_Name: Room2
+  m_Name: Room2 (Mobs)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35398,7 +35398,7 @@ Transform:
   - {fileID: 1959863955}
   - {fileID: 1791995639}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1249438877
 GameObject:
@@ -35741,7 +35741,7 @@ GameObject:
   - component: {fileID: 1537145063}
   - component: {fileID: 1537145062}
   m_Layer: 0
-  m_Name: Room3 (BossRoom)
+  m_Name: Room3 (Boss)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35780,7 +35780,7 @@ Transform:
   - {fileID: 1846408855}
   - {fileID: 1879380977}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1548739017
 GameObject:
@@ -36464,7 +36464,7 @@ GameObject:
   - component: {fileID: 1852834198}
   - component: {fileID: 1852834197}
   m_Layer: 0
-  m_Name: Room1
+  m_Name: Room1 (Spawn)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36497,7 +36497,7 @@ Transform:
   m_Children:
   - {fileID: 184544351}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1879380975
 GameObject:
