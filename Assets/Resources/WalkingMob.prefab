@@ -385,8 +385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 0
-  maxHealth: 2400000
+  startingHealth: 100000
   isDead: 0
+  healthBarOffset: 0
   player: {fileID: 0}
   speed: 6
 --- !u!212 &212020291654631242

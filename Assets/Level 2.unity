@@ -41105,7 +41105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 0
-  maxHealth: 100
+  startingHealth: 100
   isDead: 0
   healthBarOffset: 0
   character: {fileID: 11400000, guid: 03874ee313e3abf4e9a29966a5e7bf36, type: 2}
@@ -52307,7 +52307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 0
-  maxHealth: 1000
+  startingHealth: 1000
   isDead: 0
   healthBarOffset: 4
   player: {fileID: 0}

@@ -98,6 +98,18 @@ public class PeterController : AEnemy
         bookGameObject.GetComponent<AProjectile>().owner = gameObject.GetComponent<HealthSystem>();
     }
 
+    void MultiShot()
+    {
+        for (int i = -3; i < 4; i++)
+        {
+            GameObject bookGameObject = Instantiate(bookBullet, bookSpawnPoint.position, transform.rotation) as GameObject;
+            bookGameObject.transform.localEulerAngles = new Vector3(bookGameObject.transform.localRotation.x, bookGameObject.transform.localRotation.y, bookGameObject.transform.localRotation.z + i*20);
+            // Sets the protectile owner to be the boss, so you cannot damage yourself.
+            bookGameObject.GetComponent<AProjectile>().owner = gameObject.GetComponent<HealthSystem>();
+        }
+    }
+
+
     public override void Die()
     {
         anim.SetTrigger("deathTrigger");
@@ -133,8 +145,18 @@ public class PeterController : AEnemy
     /// <returns></returns>
     IEnumerator PeterRoutine()
     {
-        StartCoroutine(ThrowBook());
-        yield return new WaitForSeconds(1.5f);
+
+        for (int i = 0; i < 2; i++)
+        {
+            yield return (ThrowBook());
+            yield return new WaitForSeconds(ANIMATION_TIME);
+
+        }
+
+        yield return MultiShotRoutine();
+
+        yield return new WaitForSeconds(ANIMATION_TIME);
+
 
         // Loop all the way.
         StartCoroutine(PeterRoutine());
@@ -146,11 +168,25 @@ public class PeterController : AEnemy
     /// <returns></returns>
     IEnumerator ThrowBook()
     {
-
         // Attack animation.
         anim.SetTrigger("attackTrigger");
         yield return new WaitForSeconds(ANIMATION_TIME);    // Time it takes to throw the book.
+
         InstantiateBook();
+        
+        transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(false);
+        yield return new WaitForSeconds(ANIMATION_TIME);    // Time it takes for the hand to reach startpostition.
+        transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(true);
+    }
+
+    IEnumerator MultiShotRoutine()
+    {
+        // Attack animation.
+        anim.SetTrigger("attackTrigger");
+        yield return new WaitForSeconds(ANIMATION_TIME);    // Time it takes to throw the book.
+
+        MultiShot();
+
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(false);
         yield return new WaitForSeconds(ANIMATION_TIME);    // Time it takes for the hand to reach startpostition.
         transform.Find("Peter").Find("Hand L Pivot").Find("Hand L").Find("UnityBook").gameObject.SetActive(true);
