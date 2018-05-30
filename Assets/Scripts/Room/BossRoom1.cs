@@ -4,23 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BossRoom1 : ARoom
+public class BossRoom1 : ABossRoom
 {
     PlayerController player;
     public BlockDoorObject blockDoor;
-    private bool runOnce = true;
-    [SerializeField] private string nextLevel;
 
-    public float levelStartDelay = 0.1f;
-    private Text levelText;
-    private GameObject levelImage;
-    private string currentLevel;
+    private bool runOnce = true;
 
     public new void Awake()
     {
         base.Awake();
-        currentLevel = "Level 1";
-        TextLevel();
+
     }
 
     public void Update()
@@ -28,37 +22,11 @@ public class BossRoom1 : ARoom
         if (roomClearOfEnemies && runOnce)
         {
             runOnce = false;
-            // Fadeout
-            StartCoroutine(ChangeLevel());
+            FindObjectOfType<NextLevel>().NewLevel();
         }
     }
 
-    IEnumerator ChangeLevel()
-    {
-        //Waits for the death animation to be done.
-        yield return new WaitForSeconds(1.8f);
-
-        float fadeTime = GameObject.Find("Room3 (BossRoom)").GetComponent<Fading>().BeginFade(1);
-        yield return new WaitForSeconds(fadeTime + 1.8f);
-        SceneManager.LoadScene(nextLevel);
-    }
-
-    /// <summary>
-    /// Sets the text level.
-    /// </summary>
-    private void TextLevel()
-    {
-        levelImage = GameObject.Find("LevelImage");
-        levelText = GameObject.Find("LevelText").GetComponent<Text>();
-        levelText.text = currentLevel;
-        levelImage.SetActive(true);
-        Invoke("HideLevelImage", levelStartDelay);
-    }
-
-    private void HideLevelImage()
-    {
-        levelImage.SetActive(false);
-    }
+    
 
     /// <summary>
     /// When player enters the room.
@@ -66,6 +34,7 @@ public class BossRoom1 : ARoom
     /// <param name="player"></param>
     public override void Enter(PlayerController player)
     {
+        base.Enter(player);
         this.player = player;
         // The player shouldnt be able to go out of the room.
         if (!blockDoor.IsOpen())
@@ -73,10 +42,14 @@ public class BossRoom1 : ARoom
             blockDoor.Open();
         }
         isPlayerInRoom = true;
+        
+
     }
 
     public override void Exit()
     {
+        base.Exit();
+
         this.player = null;
         isPlayerInRoom = false;
     
@@ -94,6 +67,7 @@ public class BossRoom1 : ARoom
         if (blockDoor.IsOpen())
         {
             blockDoor.Close();
+
         }
     }
 
