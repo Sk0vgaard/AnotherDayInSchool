@@ -9,10 +9,13 @@ public abstract class ARoom : MonoBehaviour {
     public bool isPlayerInRoom;
     public bool isStartingRoom;
 
+    protected AudioSource bgm;
+
     public void Awake()
     {
         enemies = new List<AEnemy>();
         GetReferenceToEnemiesInRoom();
+        bgm = GameObject.Find("BGM").GetComponent<AudioSource>();
     }
 
     public void Start()
