@@ -23,7 +23,7 @@ public class HealthBar : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        localScale.x = (float) character.healthAmount / character.maxHealth * HEALTH_BAR_SIZE;
+        localScale.x = (float) character.healthAmount / character.startingHealth * HEALTH_BAR_SIZE;
 
         greenBar.transform.localScale = new Vector2(localScale.x, 0.3f);
         redBar.transform.localScale = new Vector2(localScale.x, 0.3f);
@@ -35,7 +35,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update ()
 	{
-        localScale.x = (float)character.healthAmount / character.maxHealth * HEALTH_BAR_SIZE;
+        localScale.x = (float)character.healthAmount / character.startingHealth * HEALTH_BAR_SIZE;
 
         //localScale.x = (float)character.healthAmount / 40f;
         greenBar.transform.localScale = new Vector2(localScale.x, 0.3f);

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public abstract class HealthSystem : MonoBehaviour
 {
+    [HideInInspector]
     public int healthAmount;
-    public int maxHealth;
+    public int startingHealth;
     [HideInInspector]
     public bool isDead;
     public float healthBarOffset;
@@ -24,7 +25,7 @@ public abstract class HealthSystem : MonoBehaviour
     // Use this for initialization
     public void Start ()
 	{
-	    healthAmount = maxHealth;
+	    healthAmount = startingHealth;
 	}
 	
 	// Update is called once per frame
