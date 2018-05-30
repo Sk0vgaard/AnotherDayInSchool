@@ -40559,6 +40559,115 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+<<<<<<< HEAD
+=======
+--- !u!1001 &1405485415
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1496572578}
+    m_Modifications:
+    - target: {fileID: 4237548274390478, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 6.5497437
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237548274390478, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -49.48558
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237548274390478, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.8069897
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237548274390478, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237548274390478, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237548274390478, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237548274390478, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237548274390478, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114411264203757220, guid: 4dceeb4b8f93b8948b90225e0bdadd51,
+        type: 2}
+      propertyPath: exitDirection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114411264203757220, guid: 4dceeb4b8f93b8948b90225e0bdadd51,
+        type: 2}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 1496572577}
+    - target: {fileID: 1469462334567704, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+      propertyPath: m_Name
+      value: Door (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114411264203757220, guid: 4dceeb4b8f93b8948b90225e0bdadd51,
+        type: 2}
+      propertyPath: exit
+      value: 
+      objectReference: {fileID: 1835660347}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4dceeb4b8f93b8948b90225e0bdadd51, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &1496572576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1496572578}
+  - component: {fileID: 1496572577}
+  m_Layer: 0
+  m_Name: Room2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1496572577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1496572576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e63a7f893e5fe409150c5d12268b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
+  roomClearOfEnemies: 0
+  isPlayerInRoom: 0
+  isStartingRoom: 0
+--- !u!4 &1496572578
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1496572576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1849650462}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of 6c3837f... Merge branch 'development' of https://github.com/Sk0vgaard/AnotherDayInSchool into development
 --- !u!1 &1511237827
 GameObject:
   m_ObjectHideFlags: 0
